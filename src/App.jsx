@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom'
-import { First } from './myComponents/first'
-import { About } from './myComponents/about'
+import './App.css'
+import { First } from './myComponents/first_of_all'
+import { Auth } from './myComponents/auth'
+import { Home } from './myComponents/home'
+
 
 function App () {
+ 
+
   return (
     <>
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<First/>}/>
-      <Route path='/about' element={<About/>}/>
+      <Route path='/auth' element={<Auth/>}/>
+      <Route path='/home' element={<Home/>}/>
     </Routes>
     </BrowserRouter>
     </>
