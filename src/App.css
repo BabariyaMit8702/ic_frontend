@@ -1,0 +1,16 @@
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  z-index: 10;
+}
+
+.body-bg {
+  background-image: url('https://wallpapers.com/images/hd/4k-social-background-3840-x-2160-be6mbg183gj9kfu1.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    
+    access:null,
 }
 
 const dark_slice = createSlice({
@@ -12,5 +12,5 @@ const dark_slice = createSlice({
     }
 })
 
-export const {change_mode} = dark_slice.actions
+export const {} = dark_slice.actions
 export const first_emp = dark_slice.reducer
