@@ -1,4 +1,4 @@
-
+/* css for login  page  */
 .glass-card {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
@@ -14,3 +14,77 @@
   background-position: center;
   position: relative;
 }
+
+
+/* media query */
+@media (min-width:1024px) {
+  .custom-image{
+    background-image: url('https://img.freepik.com/premium-photo/3d-rendering-bunch-square-logos-main-social-media-apps_284880-216.jpg');
+  }
+}
+
+@media (min-width:640px) and (max-width:1024px){
+  .custom-image{
+    background-image: url('https://wallpapers.com/images/file/social-media-pictures-ru8kyfkfl08cxsbr.jpg');
+  }
+}
+
+@media (max-width:640px) {
+  .custom-image{
+    background-image: url('https://wallpapers.com/images/file/android-social-background-v3q6plavi3to58qa.jpg');
+  }
+  .custom-design{
+    background-color: black;
+    color: aliceblue;
+  }
+}
+
+
+/* warinig */
+    #custom-model{
+        position: fixed;
+        top: 10px;
+        display: block;
+        background-color: #01050c;
+        padding: 23px;
+        color:#fff;
+        border: 0px;
+        border-radius: 13px;
+        animation: th 1s 1;
+        z-index: 11;
+    }
+
+    #inner-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #model-ok{
+        background-color: aqua;
+        border: 0px black solid;
+        width: 123px;
+        height: 33px;    
+        border-radius: 50px;  
+        color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    #model-ok:hover{
+      color: rgb(123, 142, 83);
+    }
+
+    #model-ok:active{
+        border: 2px wheat solid;
+        transform: scale(0.7);
+    }
+
+   
+        @keyframes th {
+        0%{
+            transform: scale(0);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }

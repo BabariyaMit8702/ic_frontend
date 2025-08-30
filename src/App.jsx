@@ -4,6 +4,7 @@ import './App.css'
 import { First } from './myComponents/first_of_all'
 import { Auth } from './myComponents/auth'
 import { Home } from './myComponents/home'
+import { Register } from './myComponents/register'
 
 
 function App () {
@@ -15,6 +16,7 @@ function App () {
     <Routes>
       <Route path='/' element={<First/>}/>
       <Route path='/auth' element={<Auth/>}/>
+      <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>
     </Routes>
     </BrowserRouter>
