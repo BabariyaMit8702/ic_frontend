@@ -7,17 +7,25 @@ import { user_t } from '../store/first_dark_slice';
 
 export const First = () => {
   const navigate = useNavigate();
-  const access = useSelector((state) => state.the_emp.access);
+  let access = null;
+  let refresh = null; 
   const dispatch = useDispatch();
+  async function get_refreshed() {
+    
+  }
   const redirect_first = () => {
-    access === null ?
+    access === null && refresh === null ?
     navigate('/auth'):
-    (dispatch(user_t()),navigate('/home'));
+    access !== null && refresh !== null?
+    (dispatch(user_t()),navigate('/home')):
+    access === null && refresh !== null?
+    get_refreshed():
+    null;
   }
 
   useEffect(() => {
     redirect_first();
-  }, [access])
+  }, [])
   
   return (
    <>
