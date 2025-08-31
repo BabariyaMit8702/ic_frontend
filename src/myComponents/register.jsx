@@ -13,7 +13,7 @@ export const Register = () => {
     const [pass2, setpass2] = useState("");
     const [warning, setwarning] = useState(false);
     const [info, setinfo] = useState("");
-    const [load, setload] = useState(true);
+    const [load, setload] = useState(false);
 
     const signup = (e) => {
         e.preventDefault();
@@ -33,6 +33,7 @@ export const Register = () => {
       
      (async function () {
         try{
+          setload(true);
           let data_dic = {
             username:name,
             phone:phone,
@@ -65,12 +66,18 @@ export const Register = () => {
 
   return (
    <>
+
+   {/* loading  */}
+        {load && <Loading/>} 
+
   <div className="relative min-h-screen flex bg-black items-center justify-center">
       {/* Background Image */}
+      
       <div
         className={`${load? 'opacity-10' : 'opacity-100'} absolute h-full inset-0 bg-cover bg-center custom-image`} >
 
         </div>
+  
 
       {/* Overlay */}
       <div className="absolute inset-0  bg-opacity-50 "></div>
@@ -80,17 +87,17 @@ export const Register = () => {
             </Warn>
             }
 
-            {/* loading */}
-        {load && <Loading/>}
-
       {/* Form Container */}
       <div className={`${warning? 'opacity-10 pointer-events-none' : load? 'opacity-10 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
+        
         
         {/* Left Side - Info */}
         <div className="hidden sm:flex sm:w-1/3 md:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-600 text-white p-10 flex-col justify-center">
           <h2 className="text-4xl font-bold mb-4">Join Us!</h2>
           <p className="mb-6">Sign up to get started and access all features.</p>
         </div>
+
+
 
         {/* Right Side - Form */}
         <div className="w-full sm:w-3/4 md:w-1/2 p-7 sm:p-12 custom-design">
@@ -144,7 +151,8 @@ export const Register = () => {
           </p>
         </div>
         </div>
-    </div>
+        </div>
+         
    </>
   )
 }

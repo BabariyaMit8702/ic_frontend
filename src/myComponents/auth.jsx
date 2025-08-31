@@ -2,12 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Warn } from './warning';
 import { useState } from 'react';
+import { Loading } from './loading';
 
 export const Auth = () => {
   const [empty, setempty] = useState(false);
   const [info, setinfo] = useState("");
   const [name, setname] = useState("");
   const [pass, setpass] = useState("");
+  const [load, setload] = useState(false)
 
   const login = (e) => {
     e.preventDefault();
@@ -29,7 +31,11 @@ export const Auth = () => {
   }
   return (
     <>
-    <div className="body-bg min-h-screen flex items-center justify-center p-4 relative">
+  {/* loadng */}
+  {load && <Loading/>}
+
+
+    <div className={`${load? 'opacity-50' : 'opacity-100'} body-bg min-h-screen flex items-center justify-center p-4 relative`}>
       
       <div className=" absolute inset-0 z-0"></div>
 
