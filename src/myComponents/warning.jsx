@@ -6,7 +6,7 @@ export const Warn = ({close,children}) => {
   }
   return (
     <>
-        <warn id="custom-model">
+        <div id="custom-model">
     <div id="inner-wrapper">
       <p id="warn">
         {children}
@@ -15,7 +15,7 @@ export const Warn = ({close,children}) => {
         OK
       </button>
     </div>
-  </warn>
+  </div>
     </>
   )
 }

@@ -2,10 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Warn } from './warning';
+import { useNavigate } from 'react-router-dom';
+import { Loading } from './loading';
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [name, setname] = useState("");
-    const [email, setemail] = useState("");
+    const [phone, setphone] = useState("");
     const [pass1, setpass1] = useState("");
     const [pass2, setpass2] = useState("");
     const [warning, setwarning] = useState(false);
@@ -22,7 +25,40 @@ export const Register = () => {
     ? (setinfo("Passwords do not match!"), setwarning(true))
     : name === ""
       ? (setinfo("Name is missing!"), setwarning(true))
-      : null;
+      : 
+      phone === ""?
+      (setinfo("Please Enter your phone number!"), setwarning(true))
+      :
+      
+     (async function () {
+        try{
+          let data_dic = {
+            username:name,
+            phone:phone,
+            password:pass1
+          }
+          let response = await fetch('http://127.0.0.1:8000/main/api/user-api/',{
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify(data_dic)           
+          })
+          if(!response.ok){
+            setinfo('somthing get gone wrong ! Please Try again ...');
+            setwarning(true);
+            throw new Error('the new one');
+          }
+          // let data = await response.json();
+          navigate('/home');
+
+
+        }catch(e){
+          console.log(e);
+        }
+      }())
+
+      ;
 
     }
 
@@ -42,6 +78,9 @@ export const Register = () => {
             {info}
             </Warn>
             }
+
+            {/* loading */}
+        <Loading/>
 
       {/* Form Container */}
       <div className={`${warning? 'opacity-50 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
@@ -67,10 +106,10 @@ export const Register = () => {
             />
             <input
             required
-              type="tel"
+              type="number"
               placeholder="Phone Number"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
+              value={phone}
+              onChange={(e) => setphone(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <input required
