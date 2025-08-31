@@ -55,12 +55,13 @@ export const Register = () => {
             throw new Error('the new one');
           }
           dispatch(user_t());
-          setload(false);
           navigate('/home');
 
 
         }catch(e){
           console.log(e);
+        }finally{
+          setload(false);
         }
       }())
 

@@ -9,7 +9,7 @@ export const Auth = () => {
   const [info, setinfo] = useState("");
   const [name, setname] = useState("");
   const [pass, setpass] = useState("");
-  const [load, setload] = useState(false)
+  const [load, setload] = useState(false);
 
   const login = (e) => {
     e.preventDefault();
@@ -25,7 +25,33 @@ export const Auth = () => {
   (
     setinfo('Your password is empty!'),
     setempty(true)
-  ):setload(true);
+  ):
+  
+(  async function get_access() {
+    try{
+        setload(true);
+        let data_dic = {
+          username:name,
+          password:pass
+        }
+        let response = await fetch('http://127.0.0.1:8000/main/access/',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(data_dic)
+        })
+        if(!response.ok){
+          throw new Error('the new one');
+        }
+        let data = await response.json();
+        console.log(data);
+        
+    }catch(e){
+      console.log(e);      
+    }
+  }())
+  ;
 
 
   }
