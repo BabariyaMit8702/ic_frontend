@@ -5,11 +5,11 @@ export const Loading = () => {
 
         <>
         <div className='perent_of_loading '>
-              <div class="loader">
+              <div className="loader">
     <div></div><div></div><div></div><div></div><div></div><div></div>
     <div></div><div></div><div></div><div></div><div></div><div></div>
   </div>
-  <div class="loading-text">LOADING ...</div>
+  <div className='loading-text text-black' >LOADING ...</div>
 
   </div>
         </>

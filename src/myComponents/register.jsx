@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Warn } from './warning';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from './loading';
+import { useSelector,useDispatch } from 'react-redux';
+import { user_t } from '../store/first_dark_slice';
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -14,7 +16,8 @@ export const Register = () => {
     const [warning, setwarning] = useState(false);
     const [info, setinfo] = useState("");
     const [load, setload] = useState(false);
-
+    const dispatch = useDispatch();
+    
     const signup = (e) => {
         e.preventDefault();
         pass1 === "" && pass2 === "" && name ===""?
@@ -51,7 +54,8 @@ export const Register = () => {
             setwarning(true);
             throw new Error('the new one');
           }
-          // let data = await response.json();
+          dispatch(user_t());
+          setload(false);
           navigate('/home');
 
 
@@ -70,11 +74,11 @@ export const Register = () => {
    {/* loading  */}
         {load && <Loading/>} 
 
-  <div className="relative min-h-screen flex bg-black items-center justify-center">
+  <div className="relative min-h-screen flex  items-center justify-center">
       {/* Background Image */}
       
       <div
-        className={`${load? 'opacity-10' : 'opacity-100'} absolute h-full inset-0 bg-cover bg-center custom-image`} >
+        className={`${load? 'opacity-50' : 'opacity-100'} absolute h-full inset-0 bg-cover bg-center custom-image`} >
 
         </div>
   
@@ -88,7 +92,7 @@ export const Register = () => {
             }
 
       {/* Form Container */}
-      <div className={`${warning? 'opacity-10 pointer-events-none' : load? 'opacity-10 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
+      <div className={`${warning? 'opacity-50 pointer-events-none' : load? 'opacity-10 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
         
         
         {/* Left Side - Info */}

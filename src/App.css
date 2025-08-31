@@ -96,11 +96,9 @@
   left: 50%;
   transform: translate(-50%,50%);
   z-index: 11;
-  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: #3dd17b 7px solid;
   border-radius: 15px;
   padding: 10px;
 }
@@ -116,7 +114,7 @@
       position: absolute;
       width: 12px;
       height: 25px;
-      background: #3dd17b;
+      background: black;
       border-radius: 4px;
       top: 8px;
       left: 39px;
@@ -149,7 +147,6 @@
       margin-top: 15px;
       font-size: 18px;
       letter-spacing: 2px;
-      color: #50e840;
     }
 
     @media (max-width: 600px) {

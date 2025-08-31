@@ -25,7 +25,7 @@ export const Auth = () => {
   (
     setinfo('Your password is empty!'),
     setempty(true)
-  ):null;
+  ):setload(true);
 
 
   }
@@ -35,9 +35,9 @@ export const Auth = () => {
   {load && <Loading/>}
 
 
-    <div className={`${load? 'opacity-50' : 'opacity-100'} body-bg min-h-screen flex items-center justify-center p-4 relative`}>
+    <div className={`${load? 'opacity-50 pointer-events-none' : 'opacity-100'} body-bg min-h-screen flex items-center justify-center p-4 relative `}>
       
-      <div className=" absolute inset-0 z-0"></div>
+      <div className=" absolute inset-0 z-0 "></div>
 
       {empty && <Warn close={setempty}>
         {info}
