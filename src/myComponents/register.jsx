@@ -12,7 +12,8 @@ export const Register = () => {
     const [pass1, setpass1] = useState("");
     const [pass2, setpass2] = useState("");
     const [warning, setwarning] = useState(false);
-    const [info, setinfo] = useState("")
+    const [info, setinfo] = useState("");
+    const [load, setload] = useState(true);
 
     const signup = (e) => {
         e.preventDefault();
@@ -64,10 +65,10 @@ export const Register = () => {
 
   return (
    <>
-  <div className="relative min-h-screen flex items-center justify-center">
+  <div className="relative min-h-screen flex bg-black items-center justify-center">
       {/* Background Image */}
       <div
-        className="absolute h-full inset-0 bg-cover bg-center custom-image ">
+        className={`${load? 'opacity-10' : 'opacity-100'} absolute h-full inset-0 bg-cover bg-center custom-image`} >
 
         </div>
 
@@ -80,10 +81,10 @@ export const Register = () => {
             }
 
             {/* loading */}
-        <Loading/>
+        {load && <Loading/>}
 
       {/* Form Container */}
-      <div className={`${warning? 'opacity-50 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
+      <div className={`${warning? 'opacity-10 pointer-events-none' : load? 'opacity-10 pointer-events-none' : 'opacity-100'} mx-5 relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:flex-row md:mx-7 sm:mx-5 `}>
         
         {/* Left Side - Info */}
         <div className="hidden sm:flex sm:w-1/3 md:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-600 text-white p-10 flex-col justify-center">

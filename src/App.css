@@ -92,12 +92,15 @@
 /* loading  */
 .perent_of_loading{
   position: fixed;
-  top:0px;
+  top:180px;
   z-index: 11;
-  background-color: #fff;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: #3dd17b 7px solid;
+  border-radius: 15px;
+  padding: 10px;
 }
   .loader {
       position: relative;
