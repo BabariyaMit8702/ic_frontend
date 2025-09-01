@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Warn } from './warning';
 import { useState } from 'react';
 import { Loading } from './loading';
+import { useSelector,useDispatch } from 'react-redux';
+import { user_t } from '../store/first_dark_slice';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const [empty, setempty] = useState(false);
@@ -10,6 +13,9 @@ export const Auth = () => {
   const [name, setname] = useState("");
   const [pass, setpass] = useState("");
   const [load, setload] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const login = (e) => {
     e.preventDefault();
@@ -39,16 +45,20 @@ export const Auth = () => {
           headers:{
             'Content-Type':'application/json'
           },
-          body:JSON.stringify(data_dic)
+          body:JSON.stringify(data_dic),
+          credentials:'include'
         })
         if(!response.ok){
           throw new Error('the new one');
         }
-        let data = await response.json();
-        console.log(data);
+        dispatch(user_t());
+        setload(false);
+        navigate('/home');
         
     }catch(e){
       console.log(e);      
+    }finally{
+      setload(false);
     }
   }())
   ;
