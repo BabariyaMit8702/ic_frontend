@@ -11,48 +11,58 @@ export const First = () => {
   const dispatch = useDispatch();
   const [finding, setfinding] = useState(false);
 
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
   async function redirect_first() {
     try {
       setfinding(true);
+      await wait(3000);
       let response = await fetch('http://127.0.0.1:8000/main/api/user-api/', {
         method: 'GET',
         credentials: 'include'
       })
 
-        if (response.status === 401) {
-          try {
-            let refresh = await fetch('http://127.0.0.1:8000/main/refresh/', {
-              method: 'POST',
-              credentials: 'include'
-            })
-            if (refresh.status === 401) {
-              setfinding(false);
-              navigate('/auth');
-              return;
-            }
-            return redirect_first();
-
-
-          } catch (e) {
-            console.log(e);
+      if (response.status === 401) {
+        try {
+          let refresh = await fetch('http://127.0.0.1:8000/main/refresh/', {
+            method: 'POST',
+            credentials: 'include'
+          })
+          if (refresh.status === 401) {
+            setfinding(false);
             navigate('/auth');
             return;
           }
-        }
-        if(!response.ok){
+          if (!refresh.ok) {
+            navigate('/auth');
+            return;
+          }
+          return redirect_first();
+
+
+        } catch (e) {
+          console.log(e);
           navigate('/auth');
           return;
         }
+      }
+      if (!response.ok) {
+        navigate('/auth');
+        return;
+      }
       dispatch(user_t());
-          setfinding(false);
-          navigate('/home');
-          return;
+      setfinding(false);
+      navigate('/home');
+      return;
     } catch (e) {
       console.log(e);
     } finally {
       setfinding(false);
     }
-    
+
   }
 
   useEffect(() => {
@@ -61,7 +71,20 @@ export const First = () => {
 
   return (
     <>
-      {finding && <div>HELLO WORLD!</div>}
+      {finding &&
+        <div className='h-screen bg-black' id='perent_firstofall'>
+          <div className='the_wrap'>
+            <div className='mycustom_fisrtofall'>
+            </div>
+            <div className="bounce-loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>}
     </>
   )
 }

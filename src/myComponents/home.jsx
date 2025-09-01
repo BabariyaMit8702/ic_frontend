@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import '../styles/home.css'
 
 
 export const Home = () => {
