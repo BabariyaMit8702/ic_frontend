@@ -52,17 +52,30 @@
     display: inline-block;
     transform: scale(0.67);
 }
+#mydd {
+    display: none; /* already hai */
+    position: absolute;
+    bottom: 60px; /* adjust according to nav height */
+    background-color: #1f2937; /* gray-900 */
+    border-radius: 8px;
+    padding: 10px;
+    gap: 10px;
+    flex-direction: column;
+    z-index: 60;
+}
+
 .for_dd{
-    display: none;
+    display:none;
 }
 .custom_sm{
     display: flex;
     padding: 15px;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 5px;
+    padding-left: 55px;
+    padding-right: 55px;
 }
-.mydrop{
+#mydrop{
     display: inline-block;
     transform: scale(0.67);
 }

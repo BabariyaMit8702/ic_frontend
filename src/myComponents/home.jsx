@@ -2,17 +2,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import '../styles/home.css'
-
+import { useState } from 'react';
 
 export const Home = () => {
   const dispatch = useDispatch();
   const auth_info = useSelector((state) => state.the_emp.is_user);
   const navigate = useNavigate();
+  const [dd, setdd] = useState(false);
 
   useEffect(() => {
     !auth_info && navigate('/');
   }, [auth_info])
 
+  const dt = () => {
+    dd = !dd;
+  }
 
   return (
     <>
@@ -34,6 +38,8 @@ export const Home = () => {
           <div className="hidden lg:flex lg:text-white items-center transform scale-150 ml-10 mt-3 space-x-2 p-2">
             <h3 className='logo_nav'>MyCircle</h3>
           </div>
+
+
 
           {/* Icons */}
 
@@ -58,7 +64,7 @@ export const Home = () => {
             {/* Post Icon */}
             <div className='for_dd'>
 
-              <svg xmlns="http://www.w3.org/2000/svg" className="lg:size-13 sm:size-7  border-2 border-amber-50 rounded-2xl lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2" fill="white" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" className="lg:size-13 sm:size-8 size-7  border-2 border-amber-50 rounded-2xl lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2" fill="white" viewBox="0 0 24 24">
                 <path d="M12 5v14m-7-7h14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
 
@@ -109,11 +115,32 @@ export const Home = () => {
               <p className='hidden lg:inline-block lg:ml-7 lg:relative lg:top-2 lg:text-2xl'>Settings</p>
             </div>
 
-            <div className='hidden mydrop'>
-              <svg class="size-10 text-gray-100 border-2 border-amber-50" viewBox="0 0 24 24" fill="currentColor">
+            {/* drop down  */}
+      <div 
+  id='mydd' 
+  className={`lg:hidden flex flex-col ${dd ? 'flex' : 'hidden'}`}
+>
+  {/* Hidden icons */}
+  <div className='nav_ic'> 
+    <img src='https://cdn-icons-png.flaticon.com/512/3602/3602145.png' width={'50px'} />
+    <p>Notifications</p>
+  </div>
+  <div className='nav_ic'>
+    <img src='https://cdn-icons-png.flaticon.com/512/646/646135.png' width={'50px'} />
+    <p>Messages</p>
+  </div>
+  <div className='nav_ic'>
+    <img src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png' width={'50px'} />
+    <p>Settings</p>
+  </div>
+</div>
+
+        
+            <button className='hidden' id='mydrop' onClick={dt}>
+              <svg className="size-10 text-gray-100 border-2 border-amber-50" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3 6h18v2H3V6zM3 11h18v2H3v-2zM3 16h18v2H3v-2z" />
               </svg>
-            </div>
+            </button>
           </div>
         </nav>
 
