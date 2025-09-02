@@ -1,1 +1,7 @@
 /* css for home page  */
+.logo_nav {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+}
