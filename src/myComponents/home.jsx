@@ -12,15 +12,15 @@ export const Home = () => {
   useEffect(() => {
     !auth_info && navigate('/');
   }, [auth_info])
-  
+
 
   return (
     <>
-       
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col md:flex-row">
 
-      {/* ---------- Navbar ---------- */}
-     <nav className="
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col sm:flex-row">
+
+        {/* ---------- Navbar ---------- */}
+        <nav className="
   fixed 
   bottom-0 left-0 right-0 
   lg:top-0 lg:left-0 lg:h-screen 
@@ -30,54 +30,102 @@ export const Home = () => {
   p-2 lg:w-[250px] 
   z-50
 ">
-  {/* Desktop Logo */}
-  <div className="hidden lg:flex lg:text-white items-center transform scale-150 ml-10 mt-7 space-x-2 p-2">
-  <h3 className='logo_nav'>MyCircle</h3>
-  </div>
+          {/* Desktop Logo */}
+          <div className="hidden lg:flex lg:text-white items-center transform scale-150 ml-10 mt-3 space-x-2 p-2">
+            <h3 className='logo_nav'>MyCircle</h3>
+          </div>
 
-  {/* Icons */}
-  <div className="flex justify-around w-full lg:w-auto lg:flex-col lg:space-y-6 mt-0 lg:mt-10">
-    {/* Home Icon */}
-    <svg className="h-7 w-7 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M3 9.75L12 3l9 6.75V21a.75.75 0 01-.75.75H3.75A.75.75 0 013 21V9.75z"/>
-    </svg>
-    {/* Search Icon */}
-    <svg className="h-7 w-7 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
-    </svg>
-    {/* Reels Icon */}
-    <svg className="h-7 w-7 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M3 3h18v18H3V3z"/>
-    </svg>
-  </div>
-</nav>
+          {/* Icons */}
 
+          <div className="flex lg:relative lg:bottom-16 justify-around w-full lg:w-full lg:flex-col lg:space-y-3 mt-1 custom_scale">
 
-      {/* ---------- Home Feed ---------- */}
-      <main className="flex-1 flex flex-col items-center justify-start pt-16 md:pt-2 p-4 md:p-6 lg:p-8 overflow-y-auto">
-        <div className="w-full max-w-3xl space-y-4">
-          {/* Feed Items */}
-          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-            <div key={item} className="bg-gray-800 rounded-lg shadow-md h-64 flex items-center justify-center">
-              <span className="text-gray-300 text-xl">Post {item}</span>
+            {/* Home Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:mt-3 lg:ml-7 lg:mb-2'
+                src='https://static.vecteezy.com/system/resources/previews/021/948/181/non_2x/3d-home-icon-free-png.png'
+                width={'50px'} />
+              <p className='hidden lg:inline-block pl-7 relative top-2 text-2xl'>Home</p>
             </div>
-          ))}
-        </div>
-      </main>
 
-      {/* ---------- Mobile Bottom Navbar ---------- */}
-      {/* <nav className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 flex justify-around p-2 md:hidden z-50">
-        <svg className="h-6 w-6 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M3 9.75L12 3l9 6.75V21a.75.75 0 01-.75.75H3.75A.75.75 0 013 21V9.75z"/>
-        </svg>
-        <svg className="h-6 w-6 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
-        </svg>
-        <svg className="h-6 w-6 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M3 3h18v18H3V3z"/>
-        </svg>
-      </nav> */}
-    </div>
+            {/* Search Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:mt-3 lg:ml-7 lg:mb-2'
+                src='https://icons.veryicon.com/png/o/education-technology/education-app/search-137.png'
+                width={'50px'} />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Search</p>
+            </div>
+
+               {/* Post Icon */}
+            <div className='nav_ic'>
+
+              <svg xmlns="http://www.w3.org/2000/svg" className="lg:size-13 size-13 border-2 border-amber-50 rounded-2xl lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2" fill="white" viewBox="0 0 24 24">
+                <path d="M12 5v14m-7-7h14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Post</p>
+            </div>
+
+            
+
+            {/* Reels Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2'
+                src='https://cdn-icons-png.freepik.com/256/18728/18728454.png?semt=ais_white_label'
+                width={'50px'} />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Reels</p>
+            </div>
+{/* Notification Icon */}
+            <div className='nav_ic'>
+              <img
+                className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
+                src='https://cdn-icons-png.flaticon.com/512/3602/3602145.png'
+                width={'50px'}
+                alt="Notification"
+              />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Notifications</p>
+            </div>
+
+            {/* Messages Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
+                src='https://cdn-icons-png.flaticon.com/512/646/646135.png'
+                width={'50px'} />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Messages</p>
+            </div>
+
+            {/* Profile Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:ml-7 scale-175 lg:relative lg:top-3 lg:mt-3 lg:mb-2'
+                src='https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png'
+                width={'50px'} />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-5 text-2xl'>Profile</p>
+            </div>
+
+           {/* Settings Icon */}
+            <div className='nav_ic'>
+              <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
+                src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png'
+                width={'50px'} />
+              <p className='hidden lg:inline-block lg:ml-7 relative top-2 text-2xl'>Settings</p>
+            </div>
+
+          </div>
+
+        </nav>
+
+
+        {/* ---------- Home Feed ---------- */}
+        <main className="flex-1 flex flex-col items-center justify-start pt-16 md:pt-2 p-4 md:p-6 lg:p-8 overflow-y-auto">
+          <div className="w-full customquery max-w-3xl space-y-4">
+            {/* Feed Items */}
+            {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+              <div key={item} className="bg-gray-800 rounded-lg shadow-md h-64 flex items-center justify-center">
+                <span className="text-gray-300 text-xl">Post {item}</span>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
     </>
   )
 }

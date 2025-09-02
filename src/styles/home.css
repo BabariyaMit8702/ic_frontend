@@ -5,3 +5,29 @@
     font-style: italic;
     font-weight: 300;
 }
+
+@media (min-width:1024px) and (max-width:1350px) {
+    .customquery{
+    margin-left:175px;
+    transform: scaleX(0.8);
+}
+}
+
+.nav_ic{
+    width: 250px;
+    height: 75px;
+    border-radius: 15px;
+}
+.nav_ic:hover{
+    background-color:rgb(78, 78, 78);
+}
+
+.white_icon{
+     filter: brightness(0) invert(1);
+}
+
+@media (min-width:1024px) {
+    .custom_scale{
+        transform: scale(0.65);
+    }
+}
