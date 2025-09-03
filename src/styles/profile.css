@@ -87,29 +87,6 @@ body {
   margin-top: 2rem;
 }
 
-/* Highlights */
-.highlights {
-  display: flex;
-  gap: 2rem;
-  padding: 1.5rem 0;
-  overflow-x: auto;
-}
-.highlight {
-  text-align: center;
-}
-.highlight img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #666;
-  object-fit: cover;
-}
-.highlight span {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #fff;
-}
 
 /* Posts Grid */
 .posts-grid {
@@ -144,9 +121,7 @@ body {
     margin-left: 0;
     margin-top: 1rem;
   }
-  .highlights {
-    gap: 1rem;
-  }
+
   .container {
     padding: 0.5rem;
   }

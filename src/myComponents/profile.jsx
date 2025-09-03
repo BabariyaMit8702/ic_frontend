@@ -55,17 +55,7 @@ export const Profile = () => {
       </header>
 
       {/* Highlights */}
-      <section>
-        <h3 className="section-heading">Highlights</h3>
-        <div className="highlights">
-          {highlights.map((h, idx) => (
-            <div className="highlight" key={idx}>
-              <img src={h.img} alt={h.label} />
-              <span>{h.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      
 
       {/* Posts Grid */}
       <section>
