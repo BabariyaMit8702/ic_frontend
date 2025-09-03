@@ -1,8 +1,10 @@
 import React from 'react'
 import '../styles/home.css'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Navbar = ({dt,dd}) => {
+  const navigate = useNavigate();
   return (
     <>
             {/* ---------- Navbar ---------- */}
@@ -82,7 +84,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Profile Icon */}
-            <div className='nav_ic'>
+            <div className='nav_ic' onClick={() => navigate('/profile')}>
               <img className='lg:inline-block lg:ml-7 scale-175 lg:relative lg:top-3 lg:mt-3 lg:mb-2'
                 src='https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png'
                 width={'50px'} />

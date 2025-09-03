@@ -5,6 +5,7 @@ import { First } from './myComponents/first_of_all'
 import { Auth } from './myComponents/auth'
 import { Home } from './myComponents/home'
 import { Register } from './myComponents/register'
+import { Profile } from './myComponents/profile'
 
 
 function App () {
@@ -18,6 +19,7 @@ function App () {
       <Route path='/auth' element={<Auth/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>
+      <Route path='/profile' element={<Profile/>}/>
     </Routes>
     </BrowserRouter>
     </>
