@@ -1,0 +1,76 @@
+
+.perent_of_loading{
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%,50%);
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 10px;
+}
+  .loader {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loader div {
+      position: absolute;
+      width: 12px;
+      height: 25px;
+      background: black;
+      border-radius: 4px;
+      top: 8px;
+      left: 39px;
+      transform-origin: center 37px;
+      opacity: 0.2;
+    }
+       .loader div:nth-child(1)  { transform: rotate(0deg);   animation: fade 1s linear infinite 0s; }
+    .loader div:nth-child(2)  { transform: rotate(30deg);  animation: fade 1s linear infinite 0.08s; }
+    .loader div:nth-child(3)  { transform: rotate(60deg);  animation: fade 1s linear infinite 0.16s; }
+    .loader div:nth-child(4)  { transform: rotate(90deg);  animation: fade 1s linear infinite 0.24s; }
+    .loader div:nth-child(5)  { transform: rotate(120deg); animation: fade 1s linear infinite 0.32s; }
+    .loader div:nth-child(6)  { transform: rotate(150deg); animation: fade 1s linear infinite 0.40s; }
+    .loader div:nth-child(7)  { transform: rotate(180deg); animation: fade 1s linear infinite 0.48s; }
+    .loader div:nth-child(8)  { transform: rotate(210deg); animation: fade 1s linear infinite 0.56s; }
+    .loader div:nth-child(9)  { transform: rotate(240deg); animation: fade 1s linear infinite 0.64s; }
+    .loader div:nth-child(10) { transform: rotate(270deg); animation: fade 1s linear infinite 0.72s; }
+    .loader div:nth-child(11) { transform: rotate(300deg); animation: fade 1s linear infinite 0.80s; }
+    .loader div:nth-child(12) { transform: rotate(330deg); animation: fade 1s linear infinite 0.88s; }
+
+    @keyframes fade {
+      0% { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 15px;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .loader {
+        width: 60px;
+        height: 60px;
+      }
+      .loader div {
+        width: 8px;
+        height: 18px;
+        left: 26px;
+        top: 6px;
+        transform-origin: center 25px;
+      }
+      .loading-text {
+        font-size: 14px;
+      }
+    }

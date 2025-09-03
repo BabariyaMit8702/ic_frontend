@@ -1,7 +1,7 @@
 import React from 'react'
-import '../App.css'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import '../styles/first_of_all.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { user_t } from '../store/first_dark_slice';
 import { useState } from 'react'
@@ -25,13 +25,19 @@ export const First = () => {
         credentials: 'include'
       })
 
+      if(response.status === 400){
+            setfinding(false);
+            navigate('/auth');
+            return;
+      }
+
       if (response.status === 401) {
         try {
           let refresh = await fetch('http://127.0.0.1:8000/main/refresh/', {
             method: 'POST',
             credentials: 'include'
           })
-          if (refresh.status === 401) {
+          if (refresh.status === 401 || refresh.status === 400) {
             setfinding(false);
             navigate('/auth');
             return;

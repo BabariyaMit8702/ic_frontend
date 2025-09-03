@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/warning.css'
 
 export const Warn = ({close,children}) => {
   const closeup = () => {

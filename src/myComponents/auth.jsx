@@ -6,6 +6,7 @@ import { Loading } from './loading';
 import { useSelector,useDispatch } from 'react-redux';
 import { user_t } from '../store/first_dark_slice';
 import { useNavigate } from 'react-router-dom';
+import '../styles/auth.css'
 
 export const Auth = () => {
   const [empty, setempty] = useState(false);

@@ -1,0 +1,49 @@
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  z-index: 10;
+}
+
+.body-bg {
+  background-image: url('https://wallpapers.com/images/hd/4k-social-background-3840-x-2160-be6mbg183gj9kfu1.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+
+/* media query */
+@media (min-width:1024px) {
+  .custom-image{
+    background-image: url('https://img.freepik.com/premium-photo/3d-rendering-bunch-square-logos-main-social-media-apps_284880-216.jpg');
+  }
+    .custom-design{
+    background-color: black;
+    color: aliceblue;
+  }
+}
+
+@media (min-width:640px) and (max-width:1024px){
+  .custom-image{
+    background-image: url('https://wallpapers.com/images/file/social-media-pictures-ru8kyfkfl08cxsbr.jpg');
+  }
+  .custom-design{
+    background-color: black;
+    color: aliceblue;
+  }
+}
+
+@media (max-width:640px) {
+  .custom-image{
+    background-image: url('https://wallpapers.com/images/file/android-social-background-v3q6plavi3to58qa.jpg');
+  }
+  .custom-design{
+    background-color: black;
+    color: aliceblue;
+  }
+}
+
