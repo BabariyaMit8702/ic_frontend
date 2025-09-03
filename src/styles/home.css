@@ -24,6 +24,7 @@
     padding: 10px;
     gap: 50px !important;
 }
+
 }
 
 
@@ -52,16 +53,16 @@
     display: inline-block;
     transform: scale(0.67);
 }
-#mydd {
-    display: none; /* already hai */
-    position: absolute;
-    bottom: 60px; /* adjust according to nav height */
-    background-color: #1f2937; /* gray-900 */
+.mydd {
+    position: fixed;
+    bottom: 65px; 
+    background-color: #1f2937; 
     border-radius: 8px;
     padding: 10px;
     gap: 10px;
     flex-direction: column;
     z-index: 60;
+    box-shadow: 1px -6px 15px 3px rgba(255, 255, 255, 0.5);
 }
 
 .for_dd{
@@ -75,7 +76,7 @@
     padding-left: 55px;
     padding-right: 55px;
 }
-#mydrop{
+.mydrop{
     display: inline-block;
     transform: scale(0.67);
 }
