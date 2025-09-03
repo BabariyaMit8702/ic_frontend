@@ -1,1 +1,153 @@
+body {
+  background: #333 !important;
+  color: #fff;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
 
+.container {
+  width: 100%;
+  padding: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0 1.2rem;
+  border-bottom: 1px solid #444;
+  flex-wrap: wrap;
+}
+
+.profile-pic img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #888;
+}
+
+.profile-info {
+  flex: 1;
+  margin-left: 2rem;
+  min-width: 220px;
+}
+
+.profile-username {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-username h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.profile-username button,
+.home-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid #666;
+  border-radius: 5px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 0.2rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.profile-username button:hover,
+.home-btn:hover {
+  background: #555;
+}
+
+.profile-stats {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+.profile-bio {
+  font-size: 1rem;
+  color: #f0f0f0;
+}
+.profile-bio a {
+  color: #66baff;
+  text-decoration: none;
+}
+
+.section-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  margin-top: 2rem;
+}
+
+/* Highlights */
+.highlights {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  overflow-x: auto;
+}
+.highlight {
+  text-align: center;
+}
+.highlight img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  object-fit: cover;
+}
+.highlight span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+/* Posts Grid */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.post img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+  background: #222;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profile-info { margin-left: 1rem; }
+}
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-pic img {
+    width: 90px;
+    height: 90px;
+  }
+  .profile-info {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  .highlights {
+    gap: 1rem;
+  }
+  .container {
+    padding: 0.5rem;
+  }
+}
