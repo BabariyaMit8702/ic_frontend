@@ -5,6 +5,7 @@ import '../styles/first_of_all.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { user_t } from '../store/first_dark_slice';
 import { useState } from 'react'
+import { myname } from '../store/first_dark_slice'
 
 export const First = () => {
   const navigate = useNavigate();
@@ -61,6 +62,9 @@ export const First = () => {
       }
       dispatch(user_t());
       setfinding(false);
+      let data = await response.json();
+      let username = data[0].username;
+      dispatch(myname(username));
       navigate('/home');
       return;
     } catch (e) {

@@ -1,17 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/profile.css';
 import { useNavigate } from 'react-router-dom';
-
-const highlights = [
-  { img: "https://randomuser.me/api/portraits/women/65.jpg", label: "Travel" },
-  { img: "https://randomuser.me/api/portraits/men/45.jpg", label: "Food" },
-  { img: "https://randomuser.me/api/portraits/women/32.jpg", label: "Family" },
-  { img: "https://randomuser.me/api/portraits/men/88.jpg", label: "Pets" },
-  { img: "https://randomuser.me/api/portraits/women/65.jpg", label: "Travel" },
-  { img: "https://randomuser.me/api/portraits/men/45.jpg", label: "Food" },
-  { img: "https://randomuser.me/api/portraits/women/32.jpg", label: "Family" },
-  { img: "https://randomuser.me/api/portraits/men/88.jpg", label: "Pets" },
-];
+import { useSelector,useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 
 const posts = [
@@ -24,13 +15,43 @@ const posts = [
 ];
 export const Profile = () => {
   const navigate = useNavigate();
+  const now_name = useSelector((state) => state.the_emp.username);
+  const [bio, setbio] = useState('loading...');
+  const [hobbie, sethobbie] = useState('loading...');
+  const [website, setwebsite] = useState('loading...');
+  const [pic, setpic] = useState('lg.png');
+  
+  useEffect(() => {
+    async function bio_data() {
+      try{
+        let response = await fetch('http://127.0.0.1:8000/main/api/my-profile/1/',{
+          method:'GET',
+          credentials: 'include'
+        })
+        if(!response.ok){
+          navigate('/auth');
+        }
+        let data = await response.json();
+        setbio(data.bio);
+        sethobbie(data.hobbie);
+        setwebsite(data.website);
+        setpic(data.profile_pic);
+        
+      }catch(e){
+        console.log(e);
+      }
+    }
+    bio_data();
+  }, [])
+  
+  
   return (
    <>
        <div className="container">
       {/* Profile header */}
       <header className="profile-header">
         <div className="profile-pic">
-          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" />
+          <img src={`${pic}`} alt="Profile" />
         </div>
         <div className="profile-info">
           <div className="profile-username">
@@ -45,10 +66,10 @@ export const Profile = () => {
           </div>
           <div className="profile-bio">
             <p>
-              <strong>Full Name</strong><br />
-              Web Developer 🚀<br />
-              Love to code and travel 🌍<br />
-              <a href="#">www.mywebsite.com</a>
+              <strong>{now_name}</strong><br />
+              {bio}<br />
+             {hobbie}<br />
+              <a>{website}</a>
             </p>
           </div>
         </div>
