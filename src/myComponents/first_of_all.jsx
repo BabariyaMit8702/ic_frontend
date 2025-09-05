@@ -65,7 +65,7 @@ export const First = () => {
       let data = await response.json();
       let username = data[0].username;
       dispatch(myname(username));
-      navigate('/home');
+      navigate('/profile');
       return;
     } catch (e) {
       console.log(e);

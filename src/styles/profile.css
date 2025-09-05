@@ -126,3 +126,11 @@ body {
     padding: 0.5rem;
   }
 }
+
+/* Add this at the end of your profile.css or in global styles */
+.blurred-bg {
+  filter: blur(2.5px) brightness(0.85);
+  pointer-events: none;
+  user-select: none;
+  transition: filter .2s;
+}

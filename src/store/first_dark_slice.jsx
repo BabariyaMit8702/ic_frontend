@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     is_user:false,
     username:null,
+    profile_pic:null
 }
 
 const dark_slice = createSlice({
@@ -14,9 +15,12 @@ const dark_slice = createSlice({
         },
         myname:(state,action) => {
             state.username = action.payload;
+        },
+        storeppic:(state,action) => {
+            state.profile_pic = action.payload
         }
     }
 })
 
-export const { user_t,myname } = dark_slice.actions
+export const { user_t,myname,storeppic } = dark_slice.actions
 export const first_emp = dark_slice.reducer

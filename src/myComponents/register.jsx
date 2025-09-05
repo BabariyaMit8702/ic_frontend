@@ -56,7 +56,7 @@ export const Register = () => {
             throw new Error('the new one');
           }
           dispatch(user_t());
-          navigate('/home');
+          navigate('/profile');
 
 
         }catch(e){
