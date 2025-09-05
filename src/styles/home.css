@@ -46,6 +46,15 @@
     border-radius: 15px;
     display: inline-block;
 }
+.for_dd{
+    width: 250px;
+    height: 75px;
+    border-radius: 15px;
+    display: inline-block;
+}
+.for_dd:hover{
+    background-color:rgb(78, 78, 78);
+}
 }
 
 @media (max-width:639px) {

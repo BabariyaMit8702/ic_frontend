@@ -29,13 +29,14 @@ export const Profile = () => {
           credentials: 'include'
         })
         if(!response.ok){
-          navigate('/auth');
+         navigate('/');
+         return;
         }
         let data = await response.json();
         setbio(data.bio);
         sethobbie(data.hobbie);
         setwebsite(data.website);
-        setpic(data.profile_pic);
+        setpic(data.profile_pic_url);
         
       }catch(e){
         console.log(e);
@@ -56,8 +57,8 @@ export const Profile = () => {
         <div className="profile-info">
           <div className="profile-username">
             <h2>Profile</h2>
-            <button>Edit Profile</button>
-            <button onClick={() => navigate(-1)} className="home-btn">Home</button>
+            <button onClick={() => navigate('/edit-profile')}>Edit Profile</button>
+            <button onClick={() => navigate('/home')} className="home-btn">Home</button>
           </div>
           <div className="profile-stats">
             <span><strong>54</strong> posts</span>

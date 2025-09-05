@@ -30,7 +30,7 @@ export const Navbar = ({dt,dd}) => {
           <div className="lg:flex lg:relative lg:bottom-16 lg:justify-around lg:w-full lg:flex-col custom_sm lg:space-y-3 lg:mt-1 custom_scale">
 
             {/* Home Icon */}
-            <div className='nav_ic'>
+            <div className='nav_ic hover:cursor-pointer'>
               <img className='lg:inline-block lg:mt-3 lg:ml-7 lg:mb-2'
                 src='https://static.vecteezy.com/system/resources/previews/021/948/181/non_2x/3d-home-icon-free-png.png'
                 width={'50px'} />
@@ -38,7 +38,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Search Icon */}
-            <div className='nav_ic'>
+            <div className='nav_ic hover:cursor-pointer'>
               <img className='lg:inline-block lg:mt-3 lg:ml-7 lg:mb-2'
                 src='https://icons.veryicon.com/png/o/education-technology/education-app/search-137.png'
                 width={'50px'} />
@@ -46,7 +46,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Post Icon */}
-            <div className='for_dd'>
+            <div className='for_dd hover:cursor-pointer' onClick={() => navigate('/create-post')}>
 
               <svg xmlns="http://www.w3.org/2000/svg" className="lg:size-13 sm:size-8 md:size-10 border-2 border-amber-50 rounded-2xl lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2" fill="white" viewBox="0 0 24 24">
                 <path d="M12 5v14m-7-7h14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -58,14 +58,14 @@ export const Navbar = ({dt,dd}) => {
 
 
             {/* Reels Icon */}
-            <div className='nav_ic'>
+            <div className='nav_ic hover:cursor-pointer'>
               <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2'
                 src='https://cdn-icons-png.freepik.com/256/18728/18728454.png?semt=ais_white_label'
                 width={'50px'} />
               <p className='hidden lg:inline-block lg:ml-7 lg:relative lg:top-2 lg:text-2xl'>Reels</p>
             </div>
             {/* Notification Icon */}
-            <div className=' for_dd'>
+            <div className=' for_dd hover:cursor-pointer'>
               <img
                 className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
                 src='https://cdn-icons-png.flaticon.com/512/3602/3602145.png'
@@ -76,7 +76,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Messages Icon */}
-            <div className='for_dd'>
+            <div className='for_dd hover:cursor-pointer'>
               <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
                 src='https://cdn-icons-png.flaticon.com/512/646/646135.png'
                 width={'50px'} />
@@ -84,7 +84,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Profile Icon */}
-            <div className='nav_ic' onClick={() => navigate('/profile')}>
+            <div className='nav_ic hover:cursor-pointer' onClick={() => navigate('/profile')}>
               <img className='lg:inline-block lg:ml-7 scale-175 lg:relative lg:top-3 lg:mt-3 lg:mb-2'
                 src='https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png'
                 width={'50px'} />
@@ -92,7 +92,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Settings Icon */}
-            <div className='for_dd'>
+            <div className='for_dd hover:cursor-pointer'>
               <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
                 src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png'
                 width={'50px'} />

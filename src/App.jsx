@@ -6,6 +6,8 @@ import { Auth } from './myComponents/auth'
 import { Home } from './myComponents/home'
 import { Register } from './myComponents/register'
 import { Profile } from './myComponents/profile'
+import { Cp } from './myComponents/create_post'
+import { Edit_profile } from './myComponents/edit_profile'
 
 
 function App () {
@@ -20,6 +22,8 @@ function App () {
       <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/profile' element={<Profile/>}/>
+      <Route path='/create-post' element={<Cp/>}/>
+      <Route path='/edit-profile' element={<Edit_profile/>}/>
     </Routes>
     </BrowserRouter>
     </>

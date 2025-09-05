@@ -54,7 +54,7 @@ export const Auth = () => {
         }
         dispatch(user_t());
         setload(false);
-        navigate('/home');
+        navigate('/');
         
     }catch(e){
       console.log(e);      
