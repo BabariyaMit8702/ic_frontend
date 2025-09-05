@@ -10,7 +10,7 @@ export const Cp = () => {
     const navigate = useNavigate();
     const [showAlert, setShowAlert] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
-    const [alertType, setAlertType] = useState('success'); // ya "info", "error", "warning"
+    const [alertType, setAlertType] = useState('success');
 
     const fileInputStyle = {
         display: "none",
@@ -26,15 +26,37 @@ export const Cp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (image === null) {
-           setAlertMsg("please upload post image!")
-                setAlertType("success")
-                setShowAlert(true)
-        } else {
-            setAlertMsg("Post uploaded successfully!")
-                setAlertType("success")
-                setShowAlert(true)
+
+        async function uploading() {
+            try {
+                if (image === null) {
+                    setAlertMsg("Please upload post image!");
+                    setAlertType("success");
+                    setShowAlert(true);
+                    return;
+                }
+                let formdata = new FormData();
+                formdata.append('title',title)
+                formdata.append('location',location)
+                formdata.append('image',image)
+                let response = await fetch('http://127.0.0.1:8000/main/api/posts/',{
+                    method:'POST',
+                    credentials:'include',
+                    body:formdata
+                })
+                if(!response.ok){
+                    throw new Error('the new one!');
+                }
+                setAlertMsg("Your post were uploaded succussfully!");
+                setAlertType("success");
+                setShowAlert(true);
+
+            }catch(e){
+                console.log(e);
+            }
         }
+        uploading();
+
     };
 
     return (

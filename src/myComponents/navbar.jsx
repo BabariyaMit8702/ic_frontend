@@ -112,7 +112,7 @@ export const Navbar = ({dt,dd}) => {
     <img src='https://cdn-icons-png.flaticon.com/512/646/646135.png' width={'50px'} />
   </div>
     <div className='nav_ic'>
-    <svg xmlns="http://www.w3.org/2000/svg" className="size-13 border-2 border-amber-50 rounded-2xl" fill="white" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg " onClick={() => navigate('/create-post')} className="size-13 border-2 border-amber-50 rounded-2xl" fill="white" viewBox="0 0 24 24">
       <path d="M12 5v14m-7-7h14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   </div>
