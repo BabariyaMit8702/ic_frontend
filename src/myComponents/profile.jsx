@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { PostDetailsModal } from './postmodel';
 import { storeppic } from '../store/first_dark_slice';
+import { FF } from './follower_following';
 
 
 export const Profile = () => {
@@ -22,6 +23,11 @@ export const Profile = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [follower_count, setfollower_count] = useState(0)
   const [following_count, setfollowing_count] = useState(0)
+  const [followers, setfollowers] = useState([]);
+  const [following, setfollowing] = useState([]);
+  const [showFollowModal, setShowFollowModal] = useState(false);
+  const [followModalType, setFollowModalType] = useState('followers');
+  const [followModalList, setFollowModalList] = useState([]);
 
 
   useEffect(() => {
@@ -40,6 +46,8 @@ export const Profile = () => {
         setfollower_count(data.followers_count);
         setfollowing_count(data.following_count);
         setbio(data.bio);
+        setfollowers(data.followers);
+        setfollowing(data.following);
         setnow_name(data.user_name);
         sethobbie(data.hobbie);
         setwebsite(data.website);
@@ -84,10 +92,10 @@ export const Profile = () => {
     all_func();
 
 
-  }, [increments,navigate])
+  }, [increments, navigate])
 
 
-    // Handle Post Click
+  // Handle Post Click
   const handlePostClick = async (postId) => {
     try {
       let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${postId}/`, {
@@ -108,21 +116,21 @@ export const Profile = () => {
     setSelectedPost(null);
   };
 
-  const handleLike = async(post_id) => {
-    try{
-      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`,{
-        method:'POST',
-        credentials:'include'
+  const handleLike = async (post_id) => {
+    try {
+      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`, {
+        method: 'POST',
+        credentials: 'include'
       })
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error('the new one!');
       }
       let data = await response.json();
       console.log(data);
-      
 
-    }catch(e){
-      console.log(e);      
+
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -132,12 +140,23 @@ export const Profile = () => {
   };
 
   const handleDelete = async () => {
-  // Placeholder for delete API integration
-  alert('Delete API call spot!');
-  // Optionally, you can close the modal after delete
-  // handleCloseModal();
-};
+    // Placeholder for delete API integration
+    alert('Delete API call spot!');
+    // Optionally, you can close the modal after delete
+    // handleCloseModal();
+  };
 
+  const openFollowersModal = () => {
+    setFollowModalType('followers');
+    setFollowModalList(followers); 
+    setShowFollowModal(true);
+  };
+  const openFollowingModal = () => {
+    setFollowModalType('following');
+    setFollowModalList(following); 
+    setShowFollowModal(true);
+  };
+  const closeFollowModal = () => setShowFollowModal(false);
 
   return (
     <>
@@ -155,8 +174,8 @@ export const Profile = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span><strong>{follower_count}</strong> followers</span>
-              <span><strong>{following_count}</strong> following</span> 
+              <span onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
+              <span onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
             </div>
             <div className="profile-bio">
               <p>
@@ -176,7 +195,7 @@ export const Profile = () => {
             {increments === 0 ? 'No Post Yet!' :
               <>
                 {myallposts.map((post) => (
-                  <div className="post" key={post.post_id} style={{cursor:'pointer'}} onClick={() => handlePostClick(post.post_id)}>
+                  <div className="post" key={post.post_id} style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.post_id)}>
                     <img src={post.post_url} alt='finding'>
                     </img>
                   </div>
@@ -195,6 +214,13 @@ export const Profile = () => {
           onDelete={handleDelete}
         />
       }
+    {showFollowModal && (
+        <FF
+          type={followModalType}
+          list={followModalList}
+          onClose={closeFollowModal}
+        />
+      )}
     </>
   );
 };

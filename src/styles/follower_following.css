@@ -1,0 +1,19 @@
+.followers-following-modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+.followers-following-modal {
+  background: #fff; padding: 2rem; border-radius: 8px; min-width: 320px; box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.back-btn {
+  background: #007bff; color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 4px; cursor: pointer; margin-bottom: 1rem;
+}
+.user-pic {
+  width: 32px; height: 32px; border-radius: 50%; margin-right: 10px;
+}
+.followers-following-modal ul {
+  list-style: none; padding: 0;
+}
+.followers-following-modal li {
+  display: flex; align-items: center; margin-bottom: 10px;
+}
