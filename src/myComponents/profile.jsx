@@ -9,7 +9,7 @@ import { storeppic } from '../store/first_dark_slice';
 
 export const Profile = () => {
   const navigate = useNavigate();
-  const now_name = useSelector((state) => state.the_emp.username);
+  const [now_name, setnow_name] = useState(null);
   const [bio, setbio] = useState('loading...');
   const [hobbie, sethobbie] = useState('loading...');
   const [website, setwebsite] = useState('loading...');
@@ -40,10 +40,11 @@ export const Profile = () => {
         setfollower_count(data.followers_count);
         setfollowing_count(data.following_count);
         setbio(data.bio);
+        setnow_name(data.user_name);
         sethobbie(data.hobbie);
         setwebsite(data.website);
         setpic(data.profile_pic_url);
-        dispatch(storeppic(data.profile_pic_url))
+        dispatch(storeppic(data.profile_pic_url));
 
       } catch (e) {
         console.log(e);

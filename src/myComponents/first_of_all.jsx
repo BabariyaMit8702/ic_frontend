@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/first_of_all.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { user_t } from '../store/first_dark_slice';
+import { user_t } from '../store/first_dark_slice'
 import { useState } from 'react'
 import { myname } from '../store/first_dark_slice'
 

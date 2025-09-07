@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import '../styles/home.css'
 import { useState } from 'react';
 import { Navbar } from './navbar';
+import { user_t } from '../store/first_dark_slice';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -19,13 +20,33 @@ export const Home = () => {
     setdd(!dd);
   }
 
+  const onlogout = () => {
+    async function logout() {
+      try{
+        let response = await fetch('http://127.0.0.1:8000/main/log-out/',{
+          method:'POST',
+          credentials:'include'
+        })
+        if(!response.ok){
+          throw new Error('the new one!');
+        }
+        dispatch(user_t());
+        navigate('/')
+
+      }catch(e){
+        console.log(e);
+      }
+    }
+    logout();
+  }
+
   return (
     <>
 
       <div className="min-h-screen bg-gray-900 text-white flex flex-col sm:flex-row">
 
 
-      <Navbar dd={dd} dt={dt}/>
+      <Navbar dd={dd} dt={dt} onlogout={onlogout} />
 
 
         {/* ---------- Home Feed ---------- */}

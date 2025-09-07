@@ -11,7 +11,7 @@ const dark_slice = createSlice({
     initialState,
     reducers:{
         user_t:(state) => {
-            state.is_user = true;
+            state.is_user = !state.is_user;
         },
         myname:(state,action) => {
             state.username = action.payload;

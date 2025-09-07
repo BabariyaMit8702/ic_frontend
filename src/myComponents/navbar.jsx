@@ -3,7 +3,7 @@ import '../styles/home.css'
 import { useNavigate } from 'react-router-dom'
 
 
-export const Navbar = ({dt,dd}) => {
+export const Navbar = ({dt,dd,onlogout}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -92,11 +92,11 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Settings Icon */}
-            <div className='for_dd hover:cursor-pointer'>
+            <div onClick={() => onlogout()} className='for_dd hover:cursor-pointer'>
               <img className='lg:inline-block lg:ml-7 lg:mt-3 lg:mb-2 white_icon'
                 src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png'
                 width={'50px'} />
-              <p className='hidden lg:inline-block lg:ml-7 lg:relative lg:top-2 lg:text-2xl'>Settings</p>
+              <p className='hidden lg:inline-block lg:ml-7 lg:relative lg:top-2 lg:text-2xl'>Logout</p>
             </div>
 
             {/* drop down  */}
