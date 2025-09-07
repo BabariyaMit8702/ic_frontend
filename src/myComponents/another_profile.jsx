@@ -20,9 +20,14 @@ export const ProfileNoEdit = () => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-  const [followed, setFollowed] = useState(false); // Follow button state
+  const [followed, setFollowed] = useState(false); 
+  const [thisid, setthisid] = useState(0)
+    const [follower_count, setfollower_count] = useState(0)
+    const [following_count, setfollowing_count] = useState(0)
 
   useEffect(() => {
+
+
     async function bio_data(id) {
       try {
         let response = await fetch(`http://127.0.0.1:8000/main/api/unknow-profile/${id}/`, {
@@ -33,6 +38,9 @@ export const ProfileNoEdit = () => {
             throw new Error('the new one');          
         }
         let data = await response.json();
+        setthisid(data.user_id);
+        setfollower_count(data.followers_count);
+        setfollowing_count(data.following_count);
         setbio(data.bio);
         sethobbie(data.hobbie);
         setwebsite(data.website);
@@ -94,8 +102,22 @@ export const ProfileNoEdit = () => {
     setSelectedPost(null);
   };
 
-  const handleLike = () => {
-    alert('Like API call spot!');
+  const handleLike = async(post_id) => {
+    try{
+      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`,{
+        method:'POST',
+        credentials:'include'
+      })
+      if(!response.ok){
+        throw new Error('the new one!');
+      }
+      let data = await response.json();
+      console.log(data);
+      
+
+    }catch(e){
+      console.log(e);      
+    }
   };
 
   const handleComment = () => {
@@ -105,6 +127,25 @@ export const ProfileNoEdit = () => {
   // Follow button click
   const handleFollowClick = () => {
     setFollowed(prev => !prev);
+    async function follow_on_unfollow(id) {
+      try{
+    
+        let response = await fetch(`http://127.0.0.1:8000/main/api/follow/${id}/toggle/`,{
+          method:'POST',
+          credentials:'include',
+        })
+        if(!response.ok){
+          throw new Error('the new one!');
+        }
+        let data = await response.json()
+        console.log(data);
+        
+
+      }catch(e){
+        console.log(e);
+      }
+    }
+    follow_on_unfollow(thisid);
   };
 
   return (
@@ -139,8 +180,8 @@ export const ProfileNoEdit = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span><strong>2.1k</strong> followers</span>
-              <span><strong>320</strong> following</span>
+              <span><strong>{follower_count}</strong> followers</span>
+              <span><strong>{following_count}</strong> following</span>
             </div>
             <div className="profile-bio">
               <p>
@@ -169,6 +210,7 @@ export const ProfileNoEdit = () => {
             }
           </div>
         </section>
+        
       </div>
       {modalOpen &&
         <PostModelNoDelete

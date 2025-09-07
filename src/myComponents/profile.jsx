@@ -20,7 +20,8 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-
+  const [follower_count, setfollower_count] = useState(0)
+  const [following_count, setfollowing_count] = useState(0)
 
 
   useEffect(() => {
@@ -36,7 +37,8 @@ export const Profile = () => {
         }
         let data = await response.json();
         console.log(data);
-        
+        setfollower_count(data.followers_count);
+        setfollowing_count(data.following_count);
         setbio(data.bio);
         sethobbie(data.hobbie);
         setwebsite(data.website);
@@ -105,9 +107,22 @@ export const Profile = () => {
     setSelectedPost(null);
   };
 
-  const handleLike = () => {
-    // Placeholder for like API call integration
-    alert('Like API call spot!');
+  const handleLike = async(post_id) => {
+    try{
+      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`,{
+        method:'POST',
+        credentials:'include'
+      })
+      if(!response.ok){
+        throw new Error('the new one!');
+      }
+      let data = await response.json();
+      console.log(data);
+      
+
+    }catch(e){
+      console.log(e);      
+    }
   };
 
   const handleComment = () => {
@@ -139,8 +154,8 @@ export const Profile = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span><strong>2.1k</strong> followers</span>
-              <span><strong>320</strong> following</span>
+              <span><strong>{follower_count}</strong> followers</span>
+              <span><strong>{following_count}</strong> following</span> 
             </div>
             <div className="profile-bio">
               <p>
