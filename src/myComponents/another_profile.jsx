@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { PostModelNoDelete } from './postmodel_no_edit';
 import { storeppic } from '../store/first_dark_slice';
 import { useParams } from 'react-router-dom';
+import { FF } from './follower_following';
 
 export const ProfileNoEdit = () => {
   const {pr_id} = useParams();
@@ -24,6 +25,11 @@ export const ProfileNoEdit = () => {
   const [thisid, setthisid] = useState(0)
     const [follower_count, setfollower_count] = useState(0)
     const [following_count, setfollowing_count] = useState(0)
+  const [followers, setfollowers] = useState([]);
+  const [following, setfollowing] = useState([]);
+  const [showFollowModal, setShowFollowModal] = useState(false);
+  const [followModalType, setFollowModalType] = useState('followers');
+  const [followModalList, setFollowModalList] = useState([]);
 
   useEffect(() => {
 
@@ -43,6 +49,8 @@ export const ProfileNoEdit = () => {
         setfollowing_count(data.following_count);
         setbio(data.bio);
         sethobbie(data.hobbie);
+        setfollowers(data.followers);
+        setfollowing(data.following);
         setwebsite(data.website);
         setpic(data.profile_pic_url);
         setnow_name(data.user_name);
@@ -148,6 +156,18 @@ export const ProfileNoEdit = () => {
     follow_on_unfollow(thisid);
   };
 
+    const openFollowersModal = () => {
+    setFollowModalType('followers');
+    setFollowModalList(followers); 
+    setShowFollowModal(true);
+  };
+  const openFollowingModal = () => {
+    setFollowModalType('following');
+    setFollowModalList(following); 
+    setShowFollowModal(true);
+  };
+  const closeFollowModal = () => setShowFollowModal(false);
+
   return (
     <>
       <div className="container">
@@ -180,8 +200,8 @@ export const ProfileNoEdit = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span><strong>{follower_count}</strong> followers</span>
-              <span><strong>{following_count}</strong> following</span>
+              <span onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
+              <span onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
             </div>
             <div className="profile-bio">
               <p>
@@ -220,6 +240,13 @@ export const ProfileNoEdit = () => {
           onComment={handleComment}
         />
       }
+      {showFollowModal && (
+              <FF
+                type={followModalType}
+                list={followModalList}
+                onClose={closeFollowModal}
+              />
+            )}
     </>
   );
 };
