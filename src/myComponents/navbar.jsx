@@ -38,7 +38,7 @@ export const Navbar = ({dt,dd}) => {
             </div>
 
             {/* Search Icon */}
-            <div className='nav_ic hover:cursor-pointer'>
+            <div className='nav_ic hover:cursor-pointer' onClick={() => navigate('/search-profiles')}>
               <img className='lg:inline-block lg:mt-3 lg:ml-7 lg:mb-2'
                 src='https://icons.veryicon.com/png/o/education-technology/education-app/search-137.png'
                 width={'50px'} />
