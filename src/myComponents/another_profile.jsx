@@ -1,48 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { PostDetailsModal } from './postmodel';
+import { PostModelNoDelete } from './postmodel_no_edit';
 import { storeppic } from '../store/first_dark_slice';
+import { useParams } from 'react-router-dom';
 
-
-export const Profile = () => {
+export const ProfileNoEdit = () => {
+  const {pr_id} = useParams();
   const navigate = useNavigate();
-  const now_name = useSelector((state) => state.the_emp.username);
+  const [now_name, setnow_name] = useState('')
   const [bio, setbio] = useState('loading...');
   const [hobbie, sethobbie] = useState('loading...');
   const [website, setwebsite] = useState('loading...');
   const [pic, setpic] = useState('lg.png');
-  const [myallposts, setmyallposts] = useState([])
-  const [post_total, setpost_total] = useState(0)
+  const [myallposts, setmyallposts] = useState([]);
+  const [post_total, setpost_total] = useState(0);
   const [increments, setincrements] = useState(0);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-
-
+  const [followed, setFollowed] = useState(false); // Follow button state
 
   useEffect(() => {
-    async function bio_data() {
+    async function bio_data(id) {
       try {
-        let response = await fetch('http://127.0.0.1:8000/main/api/my-profile/1/', {
+        let response = await fetch(`http://127.0.0.1:8000/main/api/unknow-profile/${id}/`, {
           method: 'GET',
           credentials: 'include'
         })
         if (!response.ok) {
-          navigate('/');
-          return;
+            throw new Error('the new one');          
         }
         let data = await response.json();
-        console.log(data);
-        
         setbio(data.bio);
         sethobbie(data.hobbie);
         setwebsite(data.website);
         setpic(data.profile_pic_url);
+        setnow_name(data.user_name);
         dispatch(storeppic(data.profile_pic_url))
-
       } catch (e) {
         console.log(e);
       }
@@ -62,29 +58,22 @@ export const Profile = () => {
           return;
         }
         let mydata = data.filter(dt => dt.user === now_name)
-
         setmyallposts(mydata);
         setpost_total(mydata.length);
         setincrements(1);
-
-
       } catch (e) {
         console.log(e);
       }
     }
 
     async function all_func() {
-      await bio_data();
+      await bio_data(pr_id);
       await get_all_my_post();
-      console.log(myallposts);
     }
     all_func();
+  }, [increments, navigate, dispatch, now_name]);
 
-
-  }, [increments,navigate])
-
-
-    // Handle Post Click
+  // Handle Post Click
   const handlePostClick = async (postId) => {
     try {
       let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${postId}/`, {
@@ -106,22 +95,17 @@ export const Profile = () => {
   };
 
   const handleLike = () => {
-    // Placeholder for like API call integration
     alert('Like API call spot!');
   };
 
   const handleComment = () => {
-    // Placeholder for comment logic
     alert('Comment functionality spot!');
   };
 
-  const handleDelete = async () => {
-  // Placeholder for delete API integration
-  alert('Delete API call spot!');
-  // Optionally, you can close the modal after delete
-  // handleCloseModal();
-};
-
+  // Follow button click
+  const handleFollowClick = () => {
+    setFollowed(prev => !prev);
+  };
 
   return (
     <>
@@ -134,8 +118,24 @@ export const Profile = () => {
           <div className="profile-info">
             <div className="profile-username">
               <h2>Profile</h2>
-              <button onClick={() => navigate('/edit-profile')}>Edit Profile</button>
+              {/* Edit Profile button hata diya */}
               <button onClick={() => navigate('/home')} className="home-btn">Home</button>
+              <button
+                className={`follow-btn ${followed ? 'followed' : ''}`}
+                onClick={handleFollowClick}
+                style={{
+                  backgroundColor: followed ? '#1976d2' : '#fff',
+                  color: followed ? '#fff' : '#1976d2',
+                  border: '1px solid #1976d2',
+                  marginLeft: '10px',
+                  cursor: 'pointer',
+                  borderRadius: '20px',
+                  padding: '5px 16px',
+                  fontWeight: 'bold'
+                }}
+              >
+                {followed ? 'Followed' : 'Follow'}
+              </button>
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
@@ -160,7 +160,7 @@ export const Profile = () => {
             {increments === 0 ? 'No Post Yet!' :
               <>
                 {myallposts.map((post) => (
-                  <div className="post" key={post.post_id} style={{cursor:'pointer'}} onClick={() => handlePostClick(post.post_id)}>
+                  <div className="post" key={post.post_id} style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.post_id)}>
                     <img src={post.post_url} alt='finding'>
                     </img>
                   </div>
@@ -171,12 +171,11 @@ export const Profile = () => {
         </section>
       </div>
       {modalOpen &&
-        <PostDetailsModal
+        <PostModelNoDelete
           post={selectedPost}
           onClose={handleCloseModal}
           onLike={handleLike}
           onComment={handleComment}
-          onDelete={handleDelete}
         />
       }
     </>
