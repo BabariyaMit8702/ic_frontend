@@ -93,9 +93,9 @@ export const Search_page = () => {
         <span className="text-black text-lg">
           {allacc.map((acc) => 
           <>
-            <div key={acc.profile_int_id} className='mb-3 p-1.5 border-blue-400 border-3 rounded-2xl'>
-              <img className='inline-block' src={acc.profile_pic_url} width={'33px'}/>
-              <span onClick={() => navigate(`/other-profiles/${acc.profile_int_id}`)}>{acc.user_name}</span>
+            <div onClick={() => navigate(`/other-profiles/${acc.profile_int_id}`)} key={acc.profile_int_id} className='hover:cursor-pointer mb-3 p-1.5 rou border-blue-400 border-3 rounded'>
+              <img className='inline-block rounded-full size-7' src={acc.profile_pic_url} />
+              <span className='ml-3' >{acc.user_name}</span>
             </div>
              
           </>

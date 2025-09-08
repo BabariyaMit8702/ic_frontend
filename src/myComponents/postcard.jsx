@@ -1,7 +1,7 @@
   import { useSelector } from "react-redux";
   import '../styles/postcard.css'
 
-  export const PostCard = ({ post, onLike, onComment }) => {
+  export const PostCard = ({ post, onLike, go_pr, onComment }) => {
     const my_ppic = useSelector((state) => state.the_emp.profile_pic);
 
     return (
@@ -9,11 +9,12 @@
         {/* Header */}
         <div className="flex items-center mb-3">
           <img
+            onClick={() => go_pr(post.user_profile_id)}
             src={post.user_profile_pic}
             alt="pp"
-            className="w-10 h-10 rounded-full object-cover mr-3"
+            className="w-10 h-10 rounded-full object-cover mr-3 hover:cursor-pointer"
           />
-          <span className="font-semibold text-white">{post.user}</span>
+          <span onClick={() => go_pr(post.user_profile_id)} className="font-semibold text-white hover:cursor-pointer">{post.user}</span>
         </div>
 
         {/* Post Image */}
