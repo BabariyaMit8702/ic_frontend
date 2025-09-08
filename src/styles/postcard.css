@@ -1,0 +1,7 @@
+/* postcard.css */
+.post-card {
+  transition: transform 0.2s ease-in-out;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+}

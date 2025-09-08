@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 export const PostModelNoDelete = ({ post, onClose, onLike, onComment }) => {
   if (!post) return null;
-  const my_ppic = useSelector((state) => state.the_emp.profile_pic);
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -12,7 +11,7 @@ export const PostModelNoDelete = ({ post, onClose, onLike, onComment }) => {
         <button className="close-btn" onClick={onClose}>&times;</button>
         <div className="modal-user-row">
           <img
-            src={my_ppic}
+            src={post.user_profile_pic}
             alt={'finding'}
             className="modal-user-pic"
           />

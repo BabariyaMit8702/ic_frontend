@@ -13,7 +13,7 @@ export const PostDetailsModal = ({ post, onClose, onLike, onComment, onDelete })
         {/* <div className="modal-user">{post.user}</div> */}
         <div className="modal-user-row">
           <img
-            src={my_ppic}
+            src={post.user_profile_pic}
             alt={'finding'}
             className="modal-user-pic"
           />
