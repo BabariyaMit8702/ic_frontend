@@ -10,7 +10,7 @@ export const FF = ({ type, list, onClose }) => {
       <h2>{type === 'followers' ? 'Followers' : 'Following'}</h2>
       <ul>
         {list.length === 0 ? (
-          <li>No {type} found.</li>
+          <li className='text-black'>No {type} found.</li>
         ) : (
           list.map((user) => (
             <li>

@@ -22,7 +22,7 @@ export const PostModelNoDelete = ({ post, onClose, onLike, onComment }) => {
         <div className="modal-title">{post.title}</div>
         <div className="modal-location">{post.location}</div>
         <div className="modal-actions">
-          <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ Like</button>
+          <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ {post.like_count}</button>
           <button className="comment-btn" onClick={onComment}>💬 Comment</button>
         </div>
         {/* Delete button hata diya */}

@@ -23,10 +23,10 @@ export const PostDetailsModal = ({ post, onClose, onLike, onComment, onDelete })
         <div className="modal-title">{post.title}</div>
         <div className="modal-location">{post.location}</div>
         <div className="modal-actions">
-          <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ Like</button>
+          <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ {post.like_count}</button>
           <button className="comment-btn" onClick={onComment}>💬 Comment</button>
         </div>
-         <button className="delete-btn" onClick={onDelete}>Delete Post</button>
+         <button className="delete-btn" onClick={() => onDelete(post.post_id) }>Delete Post</button>
       </div>
     </div>
   );

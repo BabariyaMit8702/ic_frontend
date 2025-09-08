@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { FF } from './follower_following';
 
 export const ProfileNoEdit = () => {
-  const {pr_id} = useParams();
+  const { pr_id } = useParams();
   const navigate = useNavigate();
   const [now_name, setnow_name] = useState('')
   const [bio, setbio] = useState('loading...');
@@ -21,10 +21,10 @@ export const ProfileNoEdit = () => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-  const [followed, setFollowed] = useState(false); 
+  const [followed, setFollowed] = useState(false);
   const [thisid, setthisid] = useState(0)
-    const [follower_count, setfollower_count] = useState(0)
-    const [following_count, setfollowing_count] = useState(0)
+  const [follower_count, setfollower_count] = useState(0)
+  const [following_count, setfollowing_count] = useState(0)
   const [followers, setfollowers] = useState([]);
   const [following, setfollowing] = useState([]);
   const [showFollowModal, setShowFollowModal] = useState(false);
@@ -41,7 +41,7 @@ export const ProfileNoEdit = () => {
           credentials: 'include'
         })
         if (!response.ok) {
-            throw new Error('the new one');          
+          throw new Error('the new one');
         }
         let data = await response.json();
         setthisid(data.user_id);
@@ -110,21 +110,44 @@ export const ProfileNoEdit = () => {
     setSelectedPost(null);
   };
 
-  const handleLike = async(post_id) => {
-    try{
-      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`,{
-        method:'POST',
-        credentials:'include'
+  const handleLike = async (post_id) => {
+    try {
+      let response = await fetch(`http://127.0.0.1:8000/main/api/like-management/${post_id}/toggle/`, {
+        method: 'POST',
+        credentials: 'include'
       })
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error('the new one!');
       }
       let data = await response.json();
       console.log(data);
-      
 
-    }catch(e){
-      console.log(e);      
+      setmyallposts(prevPosts =>
+        prevPosts.map(post =>
+          post.post_id === post_id
+            ? {
+              ...post,
+              like_count: post.like_count + (data.message === "Liked" ? 1 : -1),
+              is_liked_by_user: data.message === "Liked"
+            }
+            : post
+        )
+      );
+
+      // 🔹 Agar modal open hai toh uska bhi count update karo
+      setSelectedPost(prev =>
+        prev && prev.post_id === post_id
+          ? {
+            ...prev,
+            like_count: prev.like_count + (data.message === "Liked" ? 1 : -1),
+            is_liked_by_user: data.message === "Liked"
+          }
+          : prev
+      );
+
+
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -136,34 +159,34 @@ export const ProfileNoEdit = () => {
   const handleFollowClick = () => {
     setFollowed(prev => !prev);
     async function follow_on_unfollow(id) {
-      try{
-    
-        let response = await fetch(`http://127.0.0.1:8000/main/api/follow/${id}/toggle/`,{
-          method:'POST',
-          credentials:'include',
+      try {
+
+        let response = await fetch(`http://127.0.0.1:8000/main/api/follow/${id}/toggle/`, {
+          method: 'POST',
+          credentials: 'include',
         })
-        if(!response.ok){
+        if (!response.ok) {
           throw new Error('the new one!');
         }
         let data = await response.json()
         console.log(data);
-        
 
-      }catch(e){
+
+      } catch (e) {
         console.log(e);
       }
     }
     follow_on_unfollow(thisid);
   };
 
-    const openFollowersModal = () => {
+  const openFollowersModal = () => {
     setFollowModalType('followers');
-    setFollowModalList(followers); 
+    setFollowModalList(followers);
     setShowFollowModal(true);
   };
   const openFollowingModal = () => {
     setFollowModalType('following');
-    setFollowModalList(following); 
+    setFollowModalList(following);
     setShowFollowModal(true);
   };
   const closeFollowModal = () => setShowFollowModal(false);
@@ -230,7 +253,7 @@ export const ProfileNoEdit = () => {
             }
           </div>
         </section>
-        
+
       </div>
       {modalOpen &&
         <PostModelNoDelete
@@ -241,12 +264,12 @@ export const ProfileNoEdit = () => {
         />
       }
       {showFollowModal && (
-              <FF
-                type={followModalType}
-                list={followModalList}
-                onClose={closeFollowModal}
-              />
-            )}
+        <FF
+          type={followModalType}
+          list={followModalList}
+          onClose={closeFollowModal}
+        />
+      )}
     </>
   );
 };

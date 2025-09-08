@@ -127,7 +127,28 @@ export const Profile = () => {
       }
       let data = await response.json();
       console.log(data);
+      setmyallposts(prevPosts =>
+        prevPosts.map(post =>
+          post.post_id === post_id
+            ? {
+              ...post,
+              like_count: post.like_count + (data.message === "Liked" ? 1 : -1),
+              is_liked_by_user: data.message === "Liked"
+            }
+            : post
+        )
+      );
 
+      // 🔹 Agar modal open hai toh uska bhi count update karo
+      setSelectedPost(prev =>
+        prev && prev.post_id === post_id
+          ? {
+            ...prev,
+            like_count: prev.like_count + (data.message === "Liked" ? 1 : -1),
+            is_liked_by_user: data.message === "Liked"
+          }
+          : prev
+      );
 
     } catch (e) {
       console.log(e);
@@ -139,21 +160,37 @@ export const Profile = () => {
     alert('Comment functionality spot!');
   };
 
-  const handleDelete = async () => {
-    // Placeholder for delete API integration
-    alert('Delete API call spot!');
-    // Optionally, you can close the modal after delete
-    // handleCloseModal();
-  };
+  const handleDelete = async (post_id) => {
+     try {
+    let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${post_id}/`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      // 🔹 myallposts se delete karo
+      setmyallposts(prevPosts => prevPosts.filter(post => post.post_id !== post_id));
+      setpost_total(prev => prev - 1);
+
+      // 🔹 modal close kar do
+      handleCloseModal();
+    } else {
+      alert("Failed to delete post");
+    }
+  } catch (e) {
+    console.log(e);
+    alert("Error deleting post");
+  }
+};
 
   const openFollowersModal = () => {
     setFollowModalType('followers');
-    setFollowModalList(followers); 
+    setFollowModalList(followers);
     setShowFollowModal(true);
   };
   const openFollowingModal = () => {
     setFollowModalType('following');
-    setFollowModalList(following); 
+    setFollowModalList(following);
     setShowFollowModal(true);
   };
   const closeFollowModal = () => setShowFollowModal(false);
@@ -214,7 +251,7 @@ export const Profile = () => {
           onDelete={handleDelete}
         />
       }
-    {showFollowModal && (
+      {showFollowModal && (
         <FF
           type={followModalType}
           list={followModalList}
