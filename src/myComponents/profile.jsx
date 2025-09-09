@@ -28,7 +28,7 @@ export const Profile = () => {
   const [showFollowModal, setShowFollowModal] = useState(false);
   const [followModalType, setFollowModalType] = useState('followers');
   const [followModalList, setFollowModalList] = useState([]);
-
+ 
 
   useEffect(() => {
     async function bio_data() {
@@ -155,45 +155,42 @@ export const Profile = () => {
     }
   };
 
-  const handleComment = () => {
-    // Placeholder for comment logic
-    alert('Comment functionality spot!');
-  };
+  
 
   const handleDelete = async (post_id) => {
-     try {
-    let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${post_id}/`, {
-      method: 'DELETE',
-      credentials: 'include',
-    });
+    try {
+      let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${post_id}/`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
 
-    if (response.ok) {
-      setmyallposts(prevPosts => prevPosts.filter(post => post.post_id !== post_id));
-      setpost_total(prev => prev - 1);
+      if (response.ok) {
+        setmyallposts(prevPosts => prevPosts.filter(post => post.post_id !== post_id));
+        setpost_total(prev => prev - 1);
 
-      handleCloseModal();
-    } else {
-      alert("Failed to delete post");
+        handleCloseModal();
+      } else {
+        alert("Failed to delete post");
+      }
+    } catch (e) {
+      console.log(e);
+      alert("Error deleting post");
     }
-  } catch (e) {
-    console.log(e);
-    alert("Error deleting post");
-  }
-};
+  };
 
   const openFollowersModal = () => {
     setFollowModalType('followers');
     setFollowModalList(followers);
     setShowFollowModal(true);
     console.log(followers);
-    
+
   };
   const openFollowingModal = () => {
     setFollowModalType('following');
     setFollowModalList(following);
     setShowFollowModal(true);
     console.log(following);
-    
+
   };
   const closeFollowModal = () => setShowFollowModal(false);
 
@@ -213,15 +210,15 @@ export const Profile = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
-              <span onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
+              <span className='cursor-pointer' onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
+              <span className='cursor-pointer' onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
             </div>
             <div className="profile-bio">
               <p>
                 <strong>{now_name}</strong><br />
                 {bio}<br />
                 {hobbie}<br />
-                <a href={website}>{website}</a>
+                <a className='cursor-pointer' href={website}>{website}</a>
               </p>
             </div>
           </div>
@@ -249,7 +246,6 @@ export const Profile = () => {
           post={selectedPost}
           onClose={handleCloseModal}
           onLike={handleLike}
-          onComment={handleComment}
           onDelete={handleDelete}
         />
       }
@@ -260,6 +256,8 @@ export const Profile = () => {
           onClose={closeFollowModal}
         />
       )}
+ 
+
     </>
   );
 };

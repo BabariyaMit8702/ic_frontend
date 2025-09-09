@@ -225,15 +225,15 @@ export const ProfileNoEdit = () => {
             </div>
             <div className="profile-stats">
               <span><strong>{post_total}</strong> posts</span>
-              <span onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
-              <span onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
+              <span className='cursor-pointer' onClick={openFollowingModal}><strong>{following_count}</strong> following</span>
+              <span className='cursor-pointer' onClick={openFollowersModal}><strong>{follower_count}</strong> followers</span>
             </div>
             <div className="profile-bio">
               <p>
                 <strong>{now_name}</strong><br />
                 {bio}<br />
                 {hobbie}<br />
-                <a>{website}</a>
+                <a className='cursor-pointer' href={website}>{website}</a>
               </p>
             </div>
           </div>
