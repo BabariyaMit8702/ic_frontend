@@ -115,7 +115,8 @@ const goto_pr = (par) => {
         <main className="flex-1 flex flex-col items-center justify-start p-4 md:p-6 lg:p-8 overflow-y-auto">
         
           <div className="w-full customquery max-w-2xl space-y-6">
-    {posts.map((post) => (
+    {posts.length !== 0 ?(
+    posts.map((post) => (
       <PostCard
         key={post.post_id}
         go_pr={goto_pr}
@@ -123,7 +124,9 @@ const goto_pr = (par) => {
         onLike={handleLike}
         onComment={handleComment}
       />
-    ))}
+    ))):
+    <div className='h-screen flex justify-center mt-[50%]'> IF YOU WANT TO SEE POST, FOLLOW MORE PERSONS... </div>
+    }
   </div>
 
         </main>

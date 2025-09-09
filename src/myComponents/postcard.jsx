@@ -2,7 +2,6 @@
   import '../styles/postcard.css'
 
   export const PostCard = ({ post, onLike, go_pr, onComment }) => {
-    const my_ppic = useSelector((state) => state.the_emp.profile_pic);
 
     return (
       <div className="bg-gray-800 rounded-2xl shadow-md p-4 w-full">

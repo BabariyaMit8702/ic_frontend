@@ -44,6 +44,7 @@ export const ProfileNoEdit = () => {
           throw new Error('the new one');
         }
         let data = await response.json();
+        console.log(data)
         setthisid(data.user_id);
         setfollower_count(data.followers_count);
         setfollowing_count(data.following_count);
@@ -53,6 +54,7 @@ export const ProfileNoEdit = () => {
         setfollowing(data.following);
         setwebsite(data.website);
         setpic(data.profile_pic_url);
+        setFollowed(data.is_followed_by_me);
         setnow_name(data.user_name);
         dispatch(storeppic(data.profile_pic_url))
       } catch (e) {
