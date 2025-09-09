@@ -1,10 +1,8 @@
 import React from 'react';
 import '../styles/postmodel.css'
-import { useSelector } from 'react-redux';
 
 export const PostDetailsModal = ({ post, onClose, onLike, onComment, onDelete }) => {
   if (!post) return null; 
-  const my_ppic = useSelector((state) => state.the_emp.profile_pic);
 
   return (
     <div className="modal-overlay" onClick={onClose}>

@@ -10,6 +10,7 @@ import { Cp } from './myComponents/create_post'
 import { Edit_profile } from './myComponents/edit_profile'
 import { Search_page } from './myComponents/searchpage'
 import { ProfileNoEdit } from './myComponents/another_profile'
+import { SUGGESTIONS } from './myComponents/suggestions'
 
 
 function App () {
@@ -28,6 +29,7 @@ function App () {
       <Route path='/edit-profile' element={<Edit_profile/>}/>
       <Route path='/search-profiles' element={<Search_page/>}/>
       <Route path='/other-profiles/:pr_id' element={<ProfileNoEdit/>}/>
+      <Route path='/suggestions' element={<SUGGESTIONS/>}/>
 
     </Routes>
     </BrowserRouter>

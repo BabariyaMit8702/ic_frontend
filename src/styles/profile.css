@@ -96,7 +96,7 @@ body {
   margin-top: 1rem;
 }
 .post img {
-  width: 100%;
+  width: 333px;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 8px;

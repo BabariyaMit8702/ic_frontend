@@ -58,6 +58,7 @@
 }
 
 @media (max-width:639px) {
+
      .nav_ic{
     display: inline-block;
     transform: scale(0.67);
@@ -91,5 +92,15 @@
 }
 .custom_scale{
         transform: scale(1.5);
+    }
+   
+}
+
+@media (max-width:592px) {
+    .mymq{
+        position: relative;
+        top: 77px;
+        right: 200px;
+        height: 73px;
     }
 }

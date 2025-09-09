@@ -125,7 +125,12 @@ const goto_pr = (par) => {
         onComment={handleComment}
       />
     ))):
-    <div className='h-screen flex justify-center mt-[50%]'> IF YOU WANT TO SEE POST, FOLLOW MORE PERSONS... </div>
+    <>
+    <div className='h-screen flex justify-center mt-[50%]'> IF YOU WANT TO SEE POST, FOLLOW MORE PERSONS...
+        <div onClick={() => navigate('/suggestions')} className='bg-blue-700 mymq ml-3 h-12 relative bottom-3 hover:cursor-pointer rounded-[10%] text-white'> <p className="m-3">GET SUGGESTIONS</p> </div>
+       </div>
+    
+    </>
     }
   </div>
 

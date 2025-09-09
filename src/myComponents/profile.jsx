@@ -168,11 +168,9 @@ export const Profile = () => {
     });
 
     if (response.ok) {
-      // 🔹 myallposts se delete karo
       setmyallposts(prevPosts => prevPosts.filter(post => post.post_id !== post_id));
       setpost_total(prev => prev - 1);
 
-      // 🔹 modal close kar do
       handleCloseModal();
     } else {
       alert("Failed to delete post");
@@ -187,11 +185,15 @@ export const Profile = () => {
     setFollowModalType('followers');
     setFollowModalList(followers);
     setShowFollowModal(true);
+    console.log(followers);
+    
   };
   const openFollowingModal = () => {
     setFollowModalType('following');
     setFollowModalList(following);
     setShowFollowModal(true);
+    console.log(following);
+    
   };
   const closeFollowModal = () => setShowFollowModal(false);
 
@@ -219,7 +221,7 @@ export const Profile = () => {
                 <strong>{now_name}</strong><br />
                 {bio}<br />
                 {hobbie}<br />
-                <a>{website}</a>
+                <a href={website}>{website}</a>
               </p>
             </div>
           </div>
