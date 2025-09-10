@@ -54,7 +54,7 @@ import '../styles/postcard.css'
             onClick={() => onComment(post.post_id)}
           >
             <span>💬</span>
-            <span>Comment</span>
+            <span> {post.comment_count}</span>
           </button>
         </div>
       </div>

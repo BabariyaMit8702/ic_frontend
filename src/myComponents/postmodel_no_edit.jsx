@@ -29,12 +29,12 @@ export const PostModelNoDelete = ({ post, onClose, onLike }) => {
         <div className="modal-location">{post.location}</div>
         <div className="modal-actions">
           <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ {post.like_count}</button>
-          <button className="comment-btn" onClick={() => onComment(post.post_id)}>💬 Comment</button>
+          <button className="comment-btn" onClick={() => onComment(post.post_id)}>💬 Comment {post.comment_count}</button>
         </div>
         {/* Delete button hata diya */}
       </div>
     </div>
-     {commentModalOpen && (
+     {commentModalOpen && ( 
             <CommentModal
               postId={activePostId}
               onClose={() => setCommentModalOpen(false)}

@@ -3,7 +3,6 @@ import "../styles/comment_box.css";
 
 export const CommentModal = ({ postId, onClose }) => {
   const [comments, setComments] = useState([]);
-  const [visibleComments, setVisibleComments] = useState(3);
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
@@ -57,13 +56,6 @@ export const CommentModal = ({ postId, onClose }) => {
     }
   };
 
-  const handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    if (scrollTop + clientHeight >= scrollHeight - 10) {
-      setVisibleComments((prev) => prev + 3);
-    }
-  };
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="comment-modal" onClick={(e) => e.stopPropagation()}>
@@ -80,8 +72,8 @@ export const CommentModal = ({ postId, onClose }) => {
         </div>
 
         {/* Body */}
-        <div className="comment-body" onScroll={handleScroll}>
-          {comments.slice(0, visibleComments).map((cmt) => (
+        <div className="comment-body" >
+          {comments.map((cmt) => (
             <div key={cmt.comment_id} className="comment-item">
               <img
                 src={cmt.user_profile_pic}

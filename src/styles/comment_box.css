@@ -39,7 +39,6 @@
   .comment-body {
     flex: 1;
     overflow-y: auto;
-  max-height: 350px;
   }
 
   
@@ -54,4 +53,10 @@
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  @media (max-width:460px) {
+      .comment-modal{
+        width: 300px;
+      }
   }
