@@ -36,15 +36,14 @@ export const CommentModal = ({ postId, onClose }) => {
       });
 
       if (!response.ok) {
-        throw new Error('the new one!')
+        throw new Error('the new one!');
       }
+
         let data = await response.json();
-        console.log(data);
-        
         setComments((prev) => [data, ...prev]); 
         setNewComment("");
       
-      
+     
     } catch (err) {
       console.log(err);
     }
