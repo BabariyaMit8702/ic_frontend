@@ -39,8 +39,8 @@
   .comment-body {
     flex: 1;
     overflow-y: auto;
+  max-height: 350px;
   }
-
 
   
   .comment-item {

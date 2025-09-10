@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../styles/postmodel.css'
 import { CommentModal } from './comment_box';
 
@@ -7,10 +7,18 @@ export const PostDetailsModal = ({ post, onClose, onLike, onDelete }) => {
   if (!post) return null;
   const [commentModalOpen, setCommentModalOpen] = useState(false);
   const [activePostId, setActivePostId] = useState(null);
-const onComment = (postId) => {
-      setActivePostId(postId);
-  setCommentModalOpen(true);
+  const onComment = (postId) => {
+    setActivePostId(postId);
+    setCommentModalOpen(true);
   };
+  useEffect(() => {
+    document.body.classList.add("modal-open");
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, []);
+
+
   return (
     <>
       <div className="modal-overlay" onClick={onClose}>

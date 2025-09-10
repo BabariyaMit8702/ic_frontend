@@ -3,8 +3,16 @@ import "../styles/comment_box.css";
 
 export const CommentModal = ({ postId, onClose }) => {
   const [comments, setComments] = useState([]);
-  const [visibleComments, setVisibleComments] = useState(3); 
+  const [visibleComments, setVisibleComments] = useState(3);
   const [newComment, setNewComment] = useState("");
+
+  useEffect(() => {
+    document.body.classList.add("post-modal-open");
+    return () => {
+      document.body.classList.remove("post-modal-open");
+    };
+  }, []);
+
 
   // Fetch comments
   useEffect(() => {
@@ -39,11 +47,11 @@ export const CommentModal = ({ postId, onClose }) => {
         throw new Error('the new one!');
       }
 
-        let data = await response.json();
-        setComments((prev) => [data, ...prev]); 
-        setNewComment("");
-      
-     
+      let data = await response.json();
+      setComments((prev) => [data, ...prev]);
+      setNewComment("");
+
+
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +70,7 @@ export const CommentModal = ({ postId, onClose }) => {
         {/* Header */}
         <div className="comment-header">
           <input
-          className="text-black"
+            className="text-black"
             type="text"
             placeholder="Add a comment..."
             value={newComment}

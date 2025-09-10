@@ -1,1 +1,7 @@
 @import "tailwindcss";
+body.modal-open {
+  overflow: hidden !important; 
+}
+.post-modal-open {
+  overflow: hidden !important;
+}
