@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../styles/comment_box.css";
+import { useSelector,useDispatch } from "react-redux";
+import { the_change } from "../store/first_dark_slice";
 
 export const CommentModal = ({ postId, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-
-  useEffect(() => {
-    document.body.classList.add("post-modal-open");
-    return () => {
-      document.body.classList.remove("post-modal-open");
-    };
-  }, []);
+  const whenChange = useSelector((state) => state.the_emp.whenChange);
+  const dispatch = useDispatch();
+  
+  // useEffect(() => {
+  //   document.body.classList.add("post-modal-open");
+  //   return () => {
+  //     document.body.classList.remove("post-modal-open");
+  //   };
+  // }, []);
 
 
   // Fetch comments
@@ -49,7 +53,7 @@ export const CommentModal = ({ postId, onClose }) => {
       let data = await response.json();
       setComments((prev) => [data, ...prev]);
       setNewComment("");
-
+      dispatch(the_change());
 
     } catch (err) {
       console.log(err);

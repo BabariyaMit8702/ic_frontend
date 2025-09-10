@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../styles/postmodel.css'
 import { CommentModal } from './comment_box';
+import { useSelector } from 'react-redux';
 
 export const PostModelNoDelete = ({ post, onClose, onLike }) => {
   if (!post) return null;
@@ -10,6 +11,27 @@ export const PostModelNoDelete = ({ post, onClose, onLike }) => {
         setActivePostId(postId);
     setCommentModalOpen(true);
     };
+    const [cc, setcc] = useState(post.comment_count);
+    const whenChange = useSelector((state) => state.the_emp.whenChange);
+    useEffect(() => {
+        const fetchPost = async () => {
+      try {
+        let response = await fetch(`http://127.0.0.1:8000/main/api/posts/${post.post_id}/`, {
+          method: "GET",
+          credentials: "include"
+        });
+        if (!response.ok) return;
+        let data = await response.json();
+        setcc(data.comment_count);  
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+      fetchPost();
+    
+    }, [whenChange])
+    
 
   return (
     <>
@@ -29,7 +51,7 @@ export const PostModelNoDelete = ({ post, onClose, onLike }) => {
         <div className="modal-location">{post.location}</div>
         <div className="modal-actions">
           <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ {post.like_count}</button>
-          <button className="comment-btn" onClick={() => onComment(post.post_id)}>💬 Comment {post.comment_count}</button>
+          <button className="comment-btn" onClick={() => onComment(post.post_id)}>💬 Comment {cc}</button>
         </div>
         {/* Delete button hata diya */}
       </div>

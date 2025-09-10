@@ -9,6 +9,7 @@ import { PostCard } from './postcard';
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const whenChange = useSelector((state) => state.the_emp.whenChange);
   const auth_info = useSelector((state) => state.the_emp.is_user);
   const navigate = useNavigate();
   const [dd, setdd] = useState(false);
@@ -36,7 +37,7 @@ export const Home = () => {
       }
     }
     home_feed();
-  }, [auth_info])
+  }, [auth_info,whenChange])
 
   const dt = () => {
     setdd(!dd);

@@ -28,7 +28,7 @@ export const Profile = () => {
   const [showFollowModal, setShowFollowModal] = useState(false);
   const [followModalType, setFollowModalType] = useState('followers');
   const [followModalList, setFollowModalList] = useState([]);
- 
+  const whenChange = useSelector((state) => state.the_emp.whenChange);
 
   useEffect(() => {
     async function bio_data() {
@@ -92,7 +92,7 @@ export const Profile = () => {
     all_func();
 
 
-  }, [increments, navigate])
+  }, [increments, navigate, whenChange])
 
 
   // Handle Post Click
