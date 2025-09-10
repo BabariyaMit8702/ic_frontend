@@ -7,6 +7,7 @@ import { storeppic } from '../store/first_dark_slice';
 import { useParams } from 'react-router-dom';
 import { FF } from './follower_following';
 
+
 export const ProfileNoEdit = () => {
   const { pr_id } = useParams();
   const navigate = useNavigate();
@@ -153,9 +154,6 @@ export const ProfileNoEdit = () => {
     }
   };
 
-  const handleComment = () => {
-    alert('Comment functionality spot!');
-  };
 
   // Follow button click
   const handleFollowClick = () => {
@@ -262,7 +260,7 @@ export const ProfileNoEdit = () => {
           post={selectedPost}
           onClose={handleCloseModal}
           onLike={handleLike}
-          onComment={handleComment}
+        
         />
       }
       {showFollowModal && (

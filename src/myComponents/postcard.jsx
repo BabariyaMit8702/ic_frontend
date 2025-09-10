@@ -1,10 +1,19 @@
-  import { useSelector } from "react-redux";
-  import '../styles/postcard.css'
+import React, { useState } from 'react';
+import { CommentModal } from './comment_box';
+import '../styles/postcard.css'
 
-  export const PostCard = ({ post, onLike, go_pr, onComment }) => {
+  export const PostCard = ({ post, onLike, go_pr }) => {
 
+    const [commentModalOpen, setCommentModalOpen] = useState(false);
+        const [activePostId, setActivePostId] = useState(null);
+      const onComment = (postId) => {
+            setActivePostId(postId);
+        setCommentModalOpen(true);
+        };
+    
     return (
-      <div className="bg-gray-800 rounded-2xl shadow-md p-4 w-full">
+     <>
+       <div className="bg-gray-800 rounded-2xl shadow-md p-4 w-full">
         {/* Header */}
         <div className="flex items-center mb-3">
           <img
@@ -49,5 +58,13 @@
           </button>
         </div>
       </div>
+       {commentModalOpen && (
+                  <CommentModal
+                    postId={activePostId}
+                    onClose={() => setCommentModalOpen(false)}
+                  />
+                )}
+     </>
+
     );
   };

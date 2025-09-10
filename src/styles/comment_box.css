@@ -13,6 +13,7 @@
   flex-direction: column;
 }
 
+
 .comment-header {
   display: flex;
   gap: 10px;
@@ -39,6 +40,8 @@
   flex: 1;
   overflow-y: auto;
 }
+
+
 
 .comment-item {
   display: flex;

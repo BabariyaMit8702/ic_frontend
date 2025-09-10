@@ -72,10 +72,7 @@ const handleLike = async (post_id) => {
   };
 
   
-const handleComment = () => {
-    // Placeholder for comment logic
-    alert('Comment functionality spot!');
-  };
+
 
 const goto_pr = (par) => {
   let p = parseInt(par);
@@ -122,7 +119,6 @@ const goto_pr = (par) => {
         go_pr={goto_pr}
         post={post}
         onLike={handleLike}
-        onComment={handleComment}
       />
     ))):
     <>

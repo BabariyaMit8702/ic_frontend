@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/postmodel.css'
-import { useSelector } from 'react-redux';
+import { CommentModal } from './comment_box';
 
-export const PostModelNoDelete = ({ post, onClose, onLike, onComment }) => {
+export const PostModelNoDelete = ({ post, onClose, onLike }) => {
   if (!post) return null;
+  const [commentModalOpen, setCommentModalOpen] = useState(false);
+    const [activePostId, setActivePostId] = useState(null);
+  const onComment = (postId) => {
+        setActivePostId(postId);
+    setCommentModalOpen(true);
+    };
 
   return (
+    <>
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>&times;</button>
@@ -22,10 +29,17 @@ export const PostModelNoDelete = ({ post, onClose, onLike, onComment }) => {
         <div className="modal-location">{post.location}</div>
         <div className="modal-actions">
           <button className="like-btn" onClick={() => onLike(post.post_id)}>❤️ {post.like_count}</button>
-          <button className="comment-btn" onClick={onComment}>💬 Comment</button>
+          <button className="comment-btn" onClick={() => onComment(post.post_id)}>💬 Comment</button>
         </div>
         {/* Delete button hata diya */}
       </div>
     </div>
+     {commentModalOpen && (
+            <CommentModal
+              postId={activePostId}
+              onClose={() => setCommentModalOpen(false)}
+            />
+          )}
+          </>
   );
 };

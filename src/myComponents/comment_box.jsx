@@ -35,12 +35,16 @@ export const CommentModal = ({ postId, onClose }) => {
         body: JSON.stringify({ body: newComment, post: postId }),
       });
 
-      if (response.ok) {
+      if (!response.ok) {
+        throw new Error('the new one!')
+      }
         let data = await response.json();
+        console.log(data);
+        
         setComments((prev) => [data, ...prev]); 
         setNewComment("");
-      }
-      throw new Error('the new one!')
+      
+      
     } catch (err) {
       console.log(err);
     }
@@ -78,8 +82,8 @@ export const CommentModal = ({ postId, onClose }) => {
                 className="comment-user-pic"
               />
               <div>
-                <strong>{cmt.user_name}</strong>
-                <p>{cmt.body}</p>
+                <strong className="text-black">{cmt.user_name}</strong>
+                <p className="text-black">{cmt.body}</p>
               </div>
             </div>
           ))}
