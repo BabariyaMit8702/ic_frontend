@@ -55,9 +55,28 @@ export const Register = () => {
             setwarning(true);
             throw new Error('the new one');
           }
-          dispatch(user_t());
-          navigate('/auth');
-
+          try{
+            let data_dic = {
+                      username:name,
+                      password:pass1
+                    }
+                    let response = await fetch('http://127.0.0.1:8000/main/access/',{
+                      method:'POST',
+                      headers:{
+                        'Content-Type':'application/json'
+                      },
+                      body:JSON.stringify(data_dic),
+                      credentials:'include'
+                    })
+                    if(!response.ok){
+                      throw new Error('the new one');
+                    }
+                    dispatch(user_t());
+                    navigate('/');
+          }catch(e){
+            console.log(e);            
+          }
+          
 
         }catch(e){
           console.log(e);
