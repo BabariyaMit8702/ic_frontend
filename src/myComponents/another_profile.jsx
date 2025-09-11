@@ -32,6 +32,7 @@ export const ProfileNoEdit = () => {
   const [followModalType, setFollowModalType] = useState('followers');
   const [followModalList, setFollowModalList] = useState([]);
   const whenChange = useSelector((state) => state.the_emp.whenChange);
+  const [onff, setonff] = useState(0);
 
   useEffect(() => {
 
@@ -91,7 +92,7 @@ export const ProfileNoEdit = () => {
       await get_all_my_post();
     }
     all_func();
-  }, [increments, navigate, dispatch, now_name,whenChange]);
+  }, [increments, navigate, dispatch, now_name,whenChange,onff]);
 
   // Handle Post Click
   const handlePostClick = async (postId) => {
@@ -171,8 +172,7 @@ export const ProfileNoEdit = () => {
         }
         let data = await response.json()
         console.log(data);
-
-
+        setonff(onff+1);
       } catch (e) {
         console.log(e);
       }
