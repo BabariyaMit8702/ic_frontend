@@ -91,13 +91,14 @@ const goto_pr = (par) => {
           throw new Error('the new one!');
         }
         dispatch(user_t());
-        navigate('/')
+        navigate('/auth')
 
       }catch(e){
         console.log(e);
       }
     }
-    logout();
+    // logout();
+    navigate('/auth')
   }
 
   return (

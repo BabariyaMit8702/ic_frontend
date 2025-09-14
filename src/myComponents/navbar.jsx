@@ -117,7 +117,7 @@ export const Navbar = ({dt,dd,onlogout}) => {
     </svg>
   </div>
   <div className='nav_ic'>
-    <img src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png' width={'50px'} />
+    <img src='https://cdn-icons-png.flaticon.com/512/3524/3524659.png' onClick={() => onlogout()} width={'50px'} />
   </div>
 </div>
 
